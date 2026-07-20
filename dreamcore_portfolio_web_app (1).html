@@ -1,0 +1,1809 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✦ 邓芷妍's ∂яєαмℓαи∂ ✦ 梦境观测站</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for Dreamcore/Retro look -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght=400;700&family=ZCOOL+KuaiLe&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
+    <!-- FontAwesome for cute icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tone.js for Procedural Retro Synth Soundscapes -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Dreamcore Fonts & Styles */
+        body {
+            font-family: 'Space Grotesk', 'ZCOOL KuaiLe', 'Microsoft YaHei', sans-serif;
+            background: #110922;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23ff00ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41'/%3E%3Ccircle cx='12' cy='12' r='4' fill='%23ffff00'/%3E%3C/svg%3E"), auto;
+        }
+
+        /* Dreamcore / Neo-brutalism borders */
+        .dream-border {
+            border: 4px solid #000;
+            box-shadow: 6px 6px 0px 0px #000;
+        }
+        
+        .dream-border-pink {
+            border: 4px solid #ff00ff;
+            box-shadow: 6px 6px 0px 0px #00ffff;
+        }
+
+        .dream-btn-hover:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px 0px #000;
+        }
+
+        .dream-glow {
+            text-shadow: 0 0 10px rgba(255, 0, 255, 0.8), 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        /* Custom Scrollbar for quirky look */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #2a114d;
+            border-left: 3px solid #000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff00ff;
+            border: 3px solid #000;
+        }
+
+        /* CRT Screen Scanline Overlay Effect */
+        .crt-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+            background-size: 100% 4px;
+            z-index: 999;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+
+        /* Floating Animations */
+        @keyframes hoverFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        @keyframes twistFloat {
+            0%, 100% { transform: translateY(0px) rotate(-3deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        .float-animation {
+            animation: hoverFloat 4s ease-in-out infinite;
+        }
+
+        .float-animation-slow {
+            animation: twistFloat 6s ease-in-out infinite;
+        }
+
+        /* Custom GIF or pixel art backgrounds */
+        .sky-bg {
+            background-image: radial-gradient(#ffff00 1px, transparent 1px), radial-gradient(#ff00ff 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* Polaroid Photo Container Styles */
+        .polaroid-frame {
+            background: #fdfdfd;
+            border: 3px solid #000;
+            box-shadow: 5px 5px 0px #000;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .polaroid-frame:hover {
+            transform: rotate(1deg) scale(1.02);
+            box-shadow: 8px 8px 0px #000;
+        }
+
+        @keyframes fadeInDropdown {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-dropdown-fade {
+            animation: fadeInDropdown 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes borderGlowFlash {
+            0%, 100% {
+                border-color: #000;
+                box-shadow: 8px 8px 0px 0px rgba(0,0,0,1);
+            }
+            50% {
+                border-color: #ffff00;
+                box-shadow: 12px 12px 0px 0px rgba(255, 0, 255, 1);
+                transform: scale(1.02);
+            }
+        }
+        .highlight-flash {
+            animation: borderGlowFlash 0.8s ease-in-out 2;
+        }
+
+        /* Experience Disk Loading CSS Effect */
+        .disk-inserted {
+            transform: translateY(12px) scale(0.95);
+            opacity: 0.6;
+            filter: grayscale(1);
+        }
+
+        /* Hide scrollbar utility for sliding containers */
+        .scrollbar-none::-webkit-scrollbar {
+            display: none;
+        }
+        .scrollbar-none {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-black select-none sky-bg relative pb-16">
+
+    <div class="crt-overlay"></div>
+
+    <!-- Sound Init Toast Notification -->
+    <div id="welcome-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] px-4">
+        <div class="bg-violet-950 text-white max-w-md w-full p-6 border-4 border-yellow-300 rounded-none shadow-[8px_8px_0px_0px_rgba(255,0,255,1)] relative text-center">
+            <div class="absolute -top-6 -left-6 text-4xl float-animation">👁️</div>
+            <div class="absolute -bottom-6 -right-6 text-4xl float-animation-slow">🦋</div>
+            <h2 class="text-3xl font-bold mb-4 text-yellow-300 font-['ZCOOL_KuaiLe']">✦ 欢迎来到芷妍的梦核空间 ✦</h2>
+            <p class="text-sm text-cyan-200 mb-6 leading-relaxed">
+                这是属于 <strong>中国人民大学 · 邓芷妍</strong> 的创意思维观测站。我们将启用 Tone.js 虚拟合成器，为您演奏带有复古数码味道的求职梦境音乐。
+            </p>
+            <div class="flex flex-col gap-3">
+                <button id="btn-enter-synth" class="w-full bg-cyan-400 hover:bg-cyan-300 text-black font-bold py-3 px-6 border-2 border-black shadow-[4px_4px_0px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                    🔊 载入声音程序并进入空间
+                </button>
+                <button id="btn-enter-mute" class="w-full bg-pink-500 hover:bg-pink-400 text-white font-bold py-2 px-6 border-2 border-black shadow-[4px_4px_0px_0px_#000] active:translate-y-1 active:shadow-none transition-all">
+                    🔇 静音无声音轨浏览
+                </button>
+            </div>
+            <p class="text-xs text-violet-400 mt-4">“你准备好探寻金融与AI的梦境交叉点了吗？”</p>
+        </div>
+    </div>
+
+    <!-- CUSTOM TOAST ALERT SYSTEM -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-[9999] flex flex-col gap-2"></div>
+
+    <!-- Background Canvas for Dream Entities (Wings, Clouds, Eyes, Sparkles) -->
+    <canvas id="bg-canvas" class="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"></canvas>
+
+    <header class="bg-black text-lime-400 border-b-4 border-black px-4 py-2 flex justify-between items-center sticky top-0 z-[500] font-mono text-sm shadow-md">
+        <div class="flex items-center gap-3">
+            <span class="animate-ping w-2 h-2 rounded-full bg-rose-500"></span>
+            
+            <!-- Hover Dropdown Container -->
+            <div class="relative group py-1">
+                <span class="font-bold text-base tracking-wider text-pink-500 hover:text-yellow-300 transition-colors duration-150 cursor-pointer flex items-center gap-1.5 select-none">
+                    ✦ DREAMCORE_OS_v1.09 ✦ <i class="fa-solid fa-chevron-down text-xs text-lime-400 animate-pulse"></i>
+                </span>
+                
+                <!-- Dropping directory menu layout -->
+                <div class="absolute left-0 mt-2.5 w-44 bg-violet-950 border-4 border-black text-white hidden group-hover:block shadow-[6px_6px_0px_0px_rgba(255,0,255,1)] z-[1000] animate-dropdown-fade">
+                    <div class="bg-black text-[9px] text-zinc-400 p-1 px-2 border-b-2 border-black font-mono">
+                        🧭 SYSTEM_DIRECTORY
+                    </div>
+                    <a href="#about-me" onclick="highlightSection('about-me')" class="block px-3 py-2.5 border-b-2 border-black hover:bg-pink-500 hover:text-black font-['ZCOOL_KuaiLe'] text-sm tracking-wider transition-all duration-100">
+                        👁️ 关于我
+                    </a>
+                    <a href="#experience" onclick="highlightSection('experience')" class="block px-3 py-2.5 border-b-2 border-black hover:bg-cyan-400 hover:text-black font-['ZCOOL_KuaiLe'] text-sm tracking-wider transition-all duration-100">
+                        🧪 经历解密
+                    </a>
+                    <a href="#projects" onclick="highlightSection('projects')" class="block px-3 py-2.5 border-b-2 border-black hover:bg-lime-400 hover:text-black font-['ZCOOL_KuaiLe'] text-sm tracking-wider transition-all duration-100">
+                        👾 项目展示
+                    </a>
+                    <a href="#contact-me" onclick="highlightSection('contact-me')" class="block px-3 py-2.5 hover:bg-yellow-300 hover:text-black font-['ZCOOL_KuaiLe'] text-sm tracking-wider transition-all duration-100">
+                        📬 联络信箱
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:flex gap-6 items-center text-xs">
+            <span>📡 INTELLIGENCE_SYNC: OK</span>
+            <span>👁️ OBSERVERS: <span id="visitor-count">2026</span></span>
+            <span>📍 TIME_DILATION: -0.4s</span>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 bg-zinc-900 border border-lime-400 px-3 py-1 rounded">
+                <i class="fa-solid fa-volume-high text-yellow-300"></i>
+                <span id="ambient-status" class="text-xs text-yellow-300">SYNTH_OFF</span>
+            </div>
+            <button id="btn-toggle-sound" class="bg-lime-400 text-black px-2 py-0.5 font-bold hover:bg-yellow-300">MUT/UNMUT</button>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 pt-8 grid grid-cols-1 lg:grid-cols-12 gap-8 relative">
+
+        <!-- LEFT BAR: Quick Nav & Profile Widget -->
+        <div class="lg:col-span-5 flex flex-col gap-8">
+            
+            <!-- PROFILE BOX (Nostalgic CRT Monitor layout with interactive highlighting anchor) -->
+            <div id="about-me" class="bg-pink-300 text-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-5 relative transition-all duration-300 scroll-mt-20">
+                <!-- Retro titlebar -->
+                <div class="bg-black text-white p-1 px-3 -mx-5 -mt-5 mb-5 flex justify-between items-center font-mono text-xs">
+                    <span>📁 PROFILE_DENG_ZHIYAN.EXE</span>
+                    <div class="flex gap-1">
+                        <span class="w-3 h-3 bg-red-500 inline-block border border-black"></span>
+                        <span class="w-3 h-3 bg-yellow-400 inline-block border border-black"></span>
+                        <span class="w-3 h-3 bg-green-500 inline-block border border-black"></span>
+                    </div>
+                </div>
+
+                <!-- Two-Column Layout for Avatar (Left) and CV Info Sections (Right) -->
+                <div class="flex flex-col md:flex-row gap-5 items-stretch">
+                    
+                    <!-- LEFT COLUMN: Avatar & Quick Info -->
+                    <div class="w-full md:w-[40%] flex flex-col items-center justify-between bg-purple-200/50 p-3 border-2 border-dashed border-black/40">
+                        <div class="relative w-32 h-32 bg-purple-950 border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden group">
+                            <!-- Custom SVG eye visualizer representing Deng Zhiyan's profile -->
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <svg id="avatar-eye" class="w-24 h-24 transition-transform duration-300 group-hover:scale-110" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M10 50C25 20 75 20 90 50C75 80 25 80 10 50Z" fill="#ffffff" stroke="#000000" stroke-width="4"/>
+                                    <!-- Iris with neural pathways representing AI + Finance -->
+                                    <circle cx="50" cy="50" r="22" fill="#00ffff" stroke="#000000" stroke-width="3"/>
+                                    <!-- Pupil -->
+                                    <circle id="avatar-pupil" cx="50" cy="50" r="11" fill="#110922"/>
+                                    <!-- Sparkles -->
+                                    <circle cx="44" cy="44" r="4" fill="#ffffff"/>
+                                    <circle cx="54" cy="54" r="2" fill="#ffffff"/>
+                                    <!-- Aesthetic wings -->
+                                    <path d="M15 35C10 20-3 25 1 45" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+                                    <path d="M85 35C90 20 103 25 99 45" stroke="#ff00ff" stroke-width="3" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <div class="absolute bottom-1 right-1 bg-lime-400 border border-black text-black px-1 py-0.5 text-[8px] font-bold">ONLINE</div>
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <h1 class="text-2xl font-extrabold tracking-wide font-['ZCOOL_KuaiLe'] my-1">邓芷妍</h1>
+                            <p class="text-[10px] text-purple-950 font-bold tracking-wider mb-2">🎈 2029届 · 金融 × AI 产品人</p>
+                        </div>
+
+                        <!-- Skill Tags / Badges -->
+                        <div class="flex flex-wrap gap-1 justify-center mb-1">
+                            <span class="bg-cyan-300 text-black border border-black px-1.5 py-0.5 text-[9px] font-bold shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">✨ 产品培训生</span>
+                            <span class="bg-yellow-300 text-black border border-black px-1.5 py-0.5 text-[9px] font-bold shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">Community RPT</span>
+                            <span class="bg-purple-400 text-black border border-black px-1.5 py-0.5 text-[9px] font-bold shadow-[1px_1px_0px_0px_rgba(0,0,0,1)]">🤖 AI融合</span>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT COLUMN: Profile Content Areas -->
+                    <div class="w-full md:w-[60%] flex flex-col justify-between gap-2.5 font-mono">
+                        
+                        <!-- 1. Profile Section -->
+                        <div class="bg-white/90 border-2 border-black p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative group hover:bg-yellow-50 transition-colors">
+                            <span class="absolute top-1 right-1 text-xs">👁️</span>
+                            <h3 class="text-[11px] font-bold text-pink-600 border-b border-black/10 pb-0.5 mb-1 flex items-center justify-between">
+                                <span>✦ SEEKING_INTENT</span> <span class="text-[9px] text-zinc-400">/ 求职意向</span>
+                            </h3>
+                            <p class="text-[10px] leading-relaxed text-zinc-800">
+                                <strong>意向：</strong>Ace 顶尖实习生-小红书AI×社区 RPT 产品培训生。<br>
+                                <strong>优势：</strong>中国人民大学优秀学科背景 + 多次头部商业决赛经历，擅长AI场景化落地、用户精细化运营及敏捷迭代。
+                            </p>
+                        </div>
+
+                        <!-- 2. Education Section -->
+                        <div class="bg-white/90 border-2 border-black p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative group hover:bg-cyan-50 transition-colors">
+                            <span class="absolute top-1 right-1 text-xs">🎓</span>
+                            <h3 class="text-[11px] font-bold text-cyan-600 border-b border-black/10 pb-0.5 mb-1 flex items-center justify-between">
+                                <span>✦ EDUCATION</span> <span class="text-[9px] text-zinc-400">/ 教育背景</span>
+                            </h3>
+                            <div class="text-[10px] leading-snug">
+                                <p class="font-bold text-black">中国人民大学 (2025 - 2029)</p>
+                                <p class="text-zinc-600 font-bold">金融学本科 | GPA 3.91/4.0 (前7%)</p>
+                                <p class="text-purple-600 text-[9px] mt-0.5">核心课程：人工智能导论、宏观经济学、互联网与社会</p>
+                            </div>
+                        </div>
+
+                        <!-- 3. Academic Honors Section -->
+                        <div class="bg-white/90 border-2 border-black p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative group hover:bg-purple-50 transition-colors">
+                            <span class="absolute top-1 right-1 text-xs">🏆</span>
+                            <h3 class="text-[11px] font-bold text-purple-600 border-b border-black/10 pb-0.5 mb-1 flex items-center justify-between">
+                                <span>✦ COMPETITIONS</span> <span class="text-[9px] text-zinc-400">/ 核心荣誉</span>
+                            </h3>
+                            <ul class="text-[9px] list-disc pl-3.5 space-y-0.5 text-zinc-800 leading-tight">
+                                <li><strong>欧莱雅 Brandstorm：</strong>全国 Top 200 (团队核心)</li>
+                                <li><strong>雀巢 CEO 挑战赛：</strong>全国总决赛参赛成员</li>
+                                <li><strong>亚太大学生数学建模 (APMCM)：</strong>三等奖</li>
+                            </ul>
+                        </div>
+
+                        <!-- 4. Languages & Tools Section -->
+                        <div class="bg-white/90 border-2 border-black p-2 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] relative group hover:bg-lime-50 transition-colors">
+                            <span class="absolute top-1 right-1 text-xs">🗣️</span>
+                            <h3 class="text-[11px] font-bold text-lime-600 border-b border-black/10 pb-0.5 mb-1 flex items-center justify-between">
+                                <span>✦ SKILLS_SET</span> <span class="text-[9px] text-zinc-400">/ 核心技能</span>
+                            </h3>
+                            <div class="flex flex-wrap gap-1 mt-0.5 text-[9px]">
+                                <span class="bg-zinc-100 border border-black px-1.5 py-0.5 font-bold">AI×社区策划</span>
+                                <span class="bg-zinc-100 border border-black px-1.5 py-0.5 font-bold">数据建模</span>
+                                <span class="bg-zinc-100 border border-black px-1.5 py-0.5 font-bold text-purple-600">Canva / PS / AI</span>
+                                <span class="bg-zinc-100 border border-black px-1.5 py-0.5 font-bold text-pink-600">剪映 (精通)</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- 📂 PERSONAL HOBBIES SUB-SECTION -->
+                <div class="border-t-2 border-black/30 pt-3 mt-4">
+                    <span class="text-[11px] font-mono font-bold text-purple-950 flex items-center gap-1.5 mb-2">
+                        📂 SUBCULTURE_EXPLORER.EXE / 个人爱好探索 (点击解密)
+                    </span>
+                    <div class="grid grid-cols-4 gap-2">
+                        <!-- Folder 1: Street Dance (Contains Glitch Photo Decryptor) -->
+                        <div class="cursor-pointer flex flex-col items-center group transition-transform duration-200 hover:-translate-y-1 active:scale-90" onclick="openHobbyModal('dance')">
+                            <svg class="w-10 h-10 drop-shadow-[2px_2px_0px_#000] group-hover:rotate-6 transition-transform" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 4a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V6a1 1 0 00-1-1h-9L10 3H3a1 1 0 00-1 1z" fill="#ff66cc" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
+                                <path d="M2 8h20" stroke="#000" stroke-width="1.5"/>
+                            </svg>
+                            <span class="text-[9px] font-extrabold mt-1 bg-black text-lime-400 px-1 font-mono tracking-tighter">街舞.DIR</span>
+                        </div>
+                        <!-- Folder 2: Stars -->
+                        <div class="cursor-pointer flex flex-col items-center group transition-transform duration-200 hover:-translate-y-1 active:scale-90" onclick="openHobbyModal('stars')">
+                            <svg class="w-10 h-10 drop-shadow-[2px_2px_0px_#000] group-hover:rotate-6 transition-transform" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 4a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V6a1 1 0 00-1-1h-9L10 3H3a1 1 0 00-1 1z" fill="#ffff00" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
+                                <path d="M2 8h20" stroke="#000" stroke-width="1.5"/>
+                            </svg>
+                            <span class="text-[9px] font-extrabold mt-1 bg-black text-lime-400 px-1 font-mono tracking-tighter">追星.DIR</span>
+                        </div>
+                        <!-- Folder 3: Travel -->
+                        <div class="cursor-pointer flex flex-col items-center group transition-transform duration-200 hover:-translate-y-1 active:scale-90" onclick="openHobbyModal('travel')">
+                            <svg class="w-10 h-10 drop-shadow-[2px_2px_0px_#000] group-hover:rotate-6 transition-transform" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 4a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V6a1 1 0 00-1-1h-9L10 3H3a1 1 0 00-1 1z" fill="#00ffff" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
+                                <path d="M2 8h20" stroke="#000" stroke-width="1.5"/>
+                            </svg>
+                            <span class="text-[9px] font-extrabold mt-1 bg-black text-lime-400 px-1 font-mono tracking-tighter">旅游.DIR</span>
+                        </div>
+                        <!-- Folder 4: ACG -->
+                        <div class="cursor-pointer flex flex-col items-center group transition-transform duration-200 hover:-translate-y-1 active:scale-90" onclick="openHobbyModal('acg')">
+                            <svg class="w-10 h-10 drop-shadow-[2px_2px_0px_#000] group-hover:rotate-6 transition-transform" viewBox="0 0 24 24" fill="none">
+                                <path d="M3 4a1 1 0 00-1 1v14a1 1 0 001 1h18a1 1 0 001-1V6a1 1 0 00-1-1h-9L10 3H3a1 1 0 00-1 1z" fill="#b066ff" stroke="#000" stroke-width="1.5" stroke-linejoin="round"/>
+                                <path d="M2 8h20" stroke="#000" stroke-width="1.5"/>
+                            </svg>
+                            <span class="text-[9px] font-extrabold mt-1 bg-black text-lime-400 px-1 font-mono tracking-tighter">二次元.DIR</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t-2 border-black pt-4 mt-4 text-sm leading-relaxed space-y-2">
+                    <p class="bg-white/50 p-2 rounded border border-black font-mono text-[10px] leading-normal">
+                        <strong>// 意向城市：</strong> 北京 / 上海 🌟 2029年毕业 | 现已就位，致力于将极繁主义自媒体运营逻辑带入小红书社区生态！
+                    </p>
+                    <div class="flex justify-around items-center bg-black text-white p-2 shadow-inner">
+                        <div class="text-center">
+                            <div class="text-sm font-bold text-pink-400">200+</div>
+                            <div class="text-[8px] text-zinc-400">调研样本</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-bold text-cyan-400">50+</div>
+                            <div class="text-[8px] text-zinc-400">宣发物料</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-sm font-bold text-yellow-300">GPA 3.91</div>
+                            <div class="text-[8px] text-zinc-400">专业前7%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-yellow-100 border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-4 relative">
+                <div class="bg-black text-white p-1 px-3 -mx-4 -mt-4 mb-4 flex justify-between items-center font-mono text-xs">
+                    <span>📻 DREAMS_RADIO.EXE</span>
+                    <i class="fa-solid fa-compact-disc animate-spin text-pink-500"></i>
+                </div>
+
+                <div class="bg-zinc-900 border-2 border-black p-3 text-lime-400 font-mono text-xs mb-3 flex flex-col gap-1">
+                    <div class="flex justify-between">
+                        <span>NOW PLAYING:</span>
+                        <span id="track-time" class="text-white">00:00 / 01:20</span>
+                    </div>
+                    <div id="track-title" class="text-cyan-300 font-bold text-sm truncate animate-pulse">🌌 点击上方按钮开启背景音轨 🌌</div>
+                    <div class="w-full bg-zinc-800 h-2 mt-1 relative overflow-hidden">
+                        <div id="track-progress" class="bg-lime-400 h-full w-0 transition-all"></div>
+                    </div>
+                </div>
+
+                <!-- Synth Track Controls -->
+                <div class="grid grid-cols-3 gap-2 mb-3">
+                    <button id="btn-prev-track" class="bg-pink-400 border border-black p-2 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-pink-300">◀ TRACK</button>
+                    <button id="btn-play-synth" class="bg-cyan-400 border border-black p-2 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-cyan-300">PLAY ▶</button>
+                    <button id="btn-next-track" class="bg-pink-400 border border-black p-2 text-xs font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] hover:bg-pink-300">TRACK ▶</button>
+                </div>
+
+                <!-- Beat Visualizer Animation (Pure simulated HTML CSS) -->
+                <div class="flex justify-between items-end h-8 bg-zinc-900 p-1 border border-black gap-0.5">
+                    <div class="bg-lime-400 w-1/12 h-1 animate-pulse" style="animation-duration: 0.3s"></div>
+                    <div class="bg-cyan-400 w-1/12 h-3 animate-pulse" style="animation-duration: 0.5s"></div>
+                    <div class="bg-pink-500 w-1/12 h-6 animate-pulse" style="animation-duration: 0.4s"></div>
+                    <div class="bg-yellow-300 w-1/12 h-4 animate-pulse" style="animation-duration: 0.6s"></div>
+                    <div class="bg-lime-400 w-1/12 h-8 animate-pulse" style="animation-duration: 0.2s"></div>
+                    <div class="bg-cyan-400 w-1/12 h-5 animate-pulse" style="animation-duration: 0.7s"></div>
+                    <div class="bg-pink-500 w-1/12 h-2 animate-pulse" style="animation-duration: 0.4s"></div>
+                    <div class="bg-yellow-300 w-1/12 h-7 animate-pulse" style="animation-duration: 0.5s"></div>
+                </div>
+            </div>
+
+            <!-- CHATTY HELPER (SURREAL EYE DRAGON) -->
+            <div class="bg-cyan-200 border-4 border-black p-4 shadow-[8px_8px_0px_0px_#000] relative">
+                <div class="absolute -top-5 right-4 bg-yellow-300 border-2 border-black text-black px-2 py-0.5 text-xs font-bold font-mono">
+                    AI_OBSERVER
+                </div>
+                <div class="flex gap-3 items-start">
+                    <div class="text-4xl">🔮</div>
+                    <div>
+                        <p class="text-xs font-mono text-zinc-700">COMMUNITY_INTENT_LOG:</p>
+                        <p class="text-sm font-bold text-purple-950 mt-1" id="chatty-bubble">
+                            “你好！我是社区观测之眼。想解锁芷妍在顶尖挑战赛里的秘密算法和创意脑图吗？点击下方可以向我发出指令噢。”
+                        </p>
+                    </div>
+                </div>
+                <button id="btn-chat-next" class="mt-3 w-full bg-black text-white py-1 text-xs hover:bg-zinc-800 transition-colors">
+                    向潜意识引擎提问 <i class="fa-solid fa-chevron-right ml-1"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- RIGHT BAR: Main Window Space (About, Media Showcase, Decrypted Experience, Guestbook, Arcade) -->
+        <div class="lg:col-span-7 flex flex-col gap-8">
+            
+            <!-- WINDOW: EXPERIENCE CORE DECRYPTOR -->
+            <div id="experience" class="bg-lime-200 text-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 relative transition-all duration-300 scroll-mt-20">
+                <!-- Retro Title Bar -->
+                <div class="bg-black text-white p-2 px-4 -mx-6 -mt-6 mb-6 flex justify-between items-center font-mono text-sm">
+                    <div class="flex items-center gap-2">
+                        <span>🧪 EXPERIENCE_DECRYPTOR_OS.EXE</span>
+                    </div>
+                    <span class="text-xs bg-lime-400 text-black px-2 py-0.5 font-bold">MODE: REAL-TIME SECURE</span>
+                </div>
+
+                <div class="mb-4">
+                    <h2 class="text-2xl font-extrabold font-['ZCOOL_KuaiLe'] text-black mb-1">🧬 经历解密舱 · 交互体验中心</h2>
+                    <p class="text-xs text-lime-950 tracking-wider font-mono">INSERT FLOPPY DISKS TO VIEW DECRYPTED EXPERIENCE LOGS & TRY TO PLAY THE BUILT-IN EXPERIMENTAL GADGETS!</p>
+                </div>
+
+                <!-- Floppy Disk Insertion Console Interface -->
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-stretch">
+                    
+                    <!-- Left: Disk Rack (Selection Pane) -->
+                    <div class="md:col-span-5 flex flex-col gap-3 justify-center">
+                        <span class="text-xs font-mono font-bold text-purple-950 flex items-center gap-1">
+                            <i class="fa-solid fa-compact-disc animate-spin text-pink-500"></i> 选择一个意识软盘插入：
+                        </span>
+                        
+                        <!-- Disk 1 -->
+                        <button id="disk-loreal" class="disk-selector text-left bg-rose-400 border-2 border-black p-2.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-mono text-xs hover:bg-rose-300 active:translate-y-0.5 transition-all flex justify-between items-center" onclick="loadExperienceDisk('loreal')">
+                            <span class="truncate pr-2">💾 [A] 欧莱雅 Brandstorm</span>
+                            <span class="bg-black text-white px-1 text-[8px]">2026</span>
+                        </button>
+                        
+                        <!-- Disk 2 -->
+                        <button id="disk-nestle" class="disk-selector text-left bg-yellow-400 border-2 border-black p-2.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-mono text-xs hover:bg-yellow-300 active:translate-y-0.5 transition-all flex justify-between items-center" onclick="loadExperienceDisk('nestle')">
+                            <span class="truncate pr-2">💾 [B] 雀巢 CEO 挑战赛</span>
+                            <span class="bg-black text-white px-1 text-[8px]">2026</span>
+                        </button>
+                        
+                        <!-- Disk 3 -->
+                        <button id="disk-apmcm" class="disk-selector text-left bg-cyan-400 border-2 border-black p-2.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-mono text-xs hover:bg-cyan-300 active:translate-y-0.5 transition-all flex justify-between items-center" onclick="loadExperienceDisk('apmcm')">
+                            <span class="truncate pr-2">💾 [C] APMCM 数学建模</span>
+                            <span class="bg-black text-white px-1 text-[8px]">2025</span>
+                        </button>
+                        
+                        <!-- Disk 4 -->
+                        <button id="disk-su" class="disk-selector text-left bg-purple-400 border-2 border-black p-2.5 shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] font-mono text-xs hover:bg-purple-300 active:translate-y-0.5 transition-all flex justify-between items-center" onclick="loadExperienceDisk('su')">
+                            <span class="truncate pr-2">💾 [D] 人大学生会宣传部</span>
+                            <span class="bg-black text-white px-1 text-[8px]">2025-26</span>
+                        </button>
+                    </div>
+
+                    <!-- Right: Decrypted Console (Viewer Pane) -->
+                    <div class="md:col-span-7 bg-zinc-950 border-4 border-black p-4 text-lime-400 font-mono text-xs flex flex-col justify-between shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] min-h-[300px] relative overflow-hidden">
+                        
+                        <!-- Inner Scanline Effect for monitor -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent pointer-events-none h-4 animate-pulse"></div>
+
+                        <!-- Header Information -->
+                        <div class="border-b border-lime-800 pb-2 mb-3 flex justify-between items-center text-[10px] text-lime-500">
+                            <span>👁️ CONSOLE MONITOR_1</span>
+                            <span id="disk-status" class="animate-pulse">WAITING_DISK_INSERTION...</span>
+                        </div>
+
+                        <!-- Dynamic Terminal Screen Content -->
+                        <div id="experience-terminal-screen" class="flex-grow space-y-2 overflow-y-auto pr-1">
+                            <p class="text-yellow-300 font-bold text-center mt-8 text-sm font-['ZCOOL_KuaiLe']">【请选择左侧一张经历软盘进行加载】</p>
+                            <p class="text-zinc-500 text-center text-[10px] leading-relaxed mt-1">每个软盘都内嵌了独家设计的微型交互模拟装置（如价格预测、用户画像生成及宣传贴纸印刷机）！</p>
+                            
+                            <!-- Static Cute SVG drive loading simulation -->
+                            <div class="flex justify-center mt-4">
+                                <svg width="80" height="80" viewBox="0 0 100 100" fill="none">
+                                    <rect x="10" y="20" width="80" height="60" rx="10" fill="#333" stroke="#fff" stroke-width="3"/>
+                                    <rect x="25" y="45" width="50" height="10" fill="#000"/>
+                                    <circle cx="50" cy="70" r="4" fill="#00ff00" class="animate-ping"/>
+                                    <path d="M40 30h20M45 35h10" stroke="#aaa" stroke-width="2"/>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Dynamic Experimental Mini Playground Panel -->
+                        <div id="experience-playground-panel" class="mt-4 border-t border-dashed border-lime-800 pt-3 hidden">
+                            <!-- Injected playground widget here -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="projects" class="bg-purple-300 text-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 relative transition-all duration-300 scroll-mt-20">
+                <!-- Retro Title Bar -->
+                <div class="bg-black text-white p-2 px-4 -mx-6 -mt-6 mb-6 flex justify-between items-center font-mono text-sm">
+                    <div class="flex items-center gap-2">
+                        <span>📹 CREATIVE_PORTFOLIO.EXE</span>
+                    </div>
+                    <div class="flex gap-2 text-xs">
+                        <span>[_]</span> <span>[💾]</span> <span>[X]</span>
+                    </div>
+                </div>
+
+                <div class="mb-6">
+                    <h2 class="text-3xl font-extrabold font-['ZCOOL_KuaiLe'] mb-1 text-purple-950">✨ 策划前线 · 自媒体与创作日常</h2>
+                    <p class="text-xs text-purple-900 tracking-wider font-mono">PORTFOLIO & CREATIVE SAMPLES CONSTRUCTED FOR AI × COMMUNITY PRODUCT INTEREST</p>
+                </div>
+
+                <!-- Grid of self-media styles/post previews -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    
+                    <!-- Red Book Card style -->
+                    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative hover:-translate-y-1 transition-transform">
+                        <div class="absolute top-2 right-2 bg-rose-500 text-white font-bold text-[9px] px-2 py-0.5 border border-black">
+                            调研拼贴 · Xiaohongshu Style
+                        </div>
+                        <!-- Simulated post image using styled SVG representation of User Survey -->
+                        <div class="w-full h-44 bg-zinc-900 border-2 border-black flex items-center justify-center overflow-hidden relative">
+                            <svg width="100%" height="100%" class="bg-purple-950">
+                                <circle cx="50%" cy="40%" r="35" fill="#2d154c"/>
+                                <path d="M0 120 C 100 80, 200 160, 400 100 L400 180 L0 180 Z" fill="#ff00ff" opacity="0.3"/>
+                                <text x="50%" y="38%" text-anchor="middle" fill="#00ffff" font-size="11" font-family="Space Grotesk">SURVEY SPECTRUM</text>
+                                <text x="50%" y="48%" text-anchor="middle" fill="#ffff00" font-size="13" font-family="'ZCOOL KuaiLe'" font-weight="bold">“解构200+真实用户的决策链路”</text>
+                                <circle cx="30" cy="50" r="6" fill="#ffff00"/>
+                                <circle cx="80" cy="70" r="10" fill="#00ffff"/>
+                            </svg>
+                        </div>
+                        <div class="p-2">
+                            <span class="text-rose-600 font-bold text-xs"><i class="fa-solid fa-heart mr-1"></i> 品牌风暴：@场景化营销深度拆解</span>
+                            <p class="text-xs font-bold text-black mt-2">✨ 欧莱雅 Brandstorm：通过问卷与线上访谈对主流美妆产品消费生态进行分群，构建核心KOL圈层渗透方案，直击新世代极繁审美！</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="bg-rose-100 text-[10px] px-1 py-0.5 border border-black text-rose-700">#用户画像</span>
+                                <span class="bg-rose-100 text-[10px] px-1 py-0.5 border border-black text-rose-700">#KOL营销</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bilibili Card style -->
+                    <div class="bg-white border-2 border-black p-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative hover:-translate-y-1 transition-transform">
+                        <div class="absolute top-2 right-2 bg-sky-500 text-white font-bold text-[9px] px-2 py-0.5 border border-black">
+                            视频档案 · Bilibili Style
+                        </div>
+                        <!-- Simulated video preview depicting CapCut editing of Nestle advertising -->
+                        <div class="w-full h-44 bg-zinc-900 border-2 border-black flex items-center justify-center overflow-hidden relative">
+                            <svg width="100%" height="100%" class="bg-teal-950">
+                                <rect x="5%" y="5%" width="90%" height="90%" fill="none" stroke="#ffff00" stroke-width="2" stroke-dasharray="4"/>
+                                <polygon points="45,35 65,47 45,59" fill="#00ff00"/>
+                                <text x="50%" y="80%" text-anchor="middle" fill="#ffffff" font-size="11">NESTLE CHALLENGE VIDEO EDIT [02:30]</text>
+                                <line x1="20" y1="47" x2="80" y2="47" stroke="#ff00ff" stroke-width="2" stroke-dasharray="6"/>
+                            </svg>
+                        </div>
+                        <div class="p-2">
+                            <span class="text-sky-600 font-bold text-xs"><i class="fa-solid fa-play mr-1"></i> 独家策划：剪映全流程独立剪辑作品</span>
+                            <p class="text-xs font-bold text-black mt-2">🎬 雀巢 CEO 挑战赛：独立负责全流程方案宣传片的剧本撰写、动态合成以及配乐剪辑。通过极具叙事张力的剪辑有效展示产品护城河！</p>
+                            <div class="flex gap-2 mt-2">
+                                <span class="bg-sky-100 text-[10px] px-1 py-0.5 border border-black text-sky-700">#创意短片</span>
+                                <span class="bg-sky-100 text-[10px] px-1 py-0.5 border border-black text-sky-700">#全流程剪辑</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WINDOW: MINI ARCADE GAME (INTERACTIVE CATCH THE FRAGMENTS) -->
+            <div class="bg-cyan-300 text-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 relative">
+                <!-- Retro Title Bar -->
+                <div class="bg-black text-white p-2 px-4 -mx-6 -mt-6 mb-6 flex justify-between items-center font-mono text-sm">
+                    <div class="flex items-center gap-2">
+                        <span>🎮 DREAM_CATCHER_ARCADE.EXE</span>
+                    </div>
+                    <span class="text-yellow-300 font-bold" id="arcade-high-score">HIGH: 0</span>
+                </div>
+
+                <div class="mb-4">
+                    <h2 class="text-2xl font-extrabold font-['ZCOOL_KuaiLe'] text-black mb-1">👾 捕梦網 · 梦境碎片收集器</h2>
+                    <p class="text-xs text-cyan-900 tracking-wider">收集从空中铺天盖地飘过的梦境气泡！如果不小心点到“理智深渊（黑色异星）”会降低理智值哦！</p>
+                </div>
+
+                <!-- Game Container -->
+                <div class="relative w-full h-64 bg-slate-950 border-4 border-black overflow-hidden select-none" id="arcade-container">
+                    <!-- Grid background -->
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(18,24,38,0.3)_1px,transparent_1px),linear-gradient(90deg,rgba(18,24,38,0.3)_1px,transparent_1px)] bg-[size:20px_20px] pointer-events-none"></div>
+                    
+                    <!-- Game HUD Overlay -->
+                    <div class="absolute top-2 left-2 flex items-center gap-3 text-xs font-mono text-lime-400 z-10 bg-black/70 px-2 py-1">
+                        <span>SCORE: <span id="arcade-score" class="text-white font-bold">0</span></span>
+                        <span>SANITY: <span id="arcade-sanity" class="text-rose-500 font-bold">💙💙💙</span></span>
+                    </div>
+
+                    <!-- Start/Reset screen -->
+                    <div id="arcade-start-screen" class="absolute inset-0 bg-slate-950/90 flex flex-col items-center justify-center text-center z-20">
+                        <div class="text-4xl animate-bounce">🪁</div>
+                        <h3 class="text-xl font-bold text-white mb-2 font-['ZCOOL_KuaiLe']">✦ 开始净化潜意识碎片 ✦</h3>
+                        <button id="btn-start-arcade" class="bg-yellow-300 text-black border-2 border-black px-4 py-2 text-sm font-bold shadow-[4px_4px_0px_0px_#000] hover:bg-yellow-200">
+                            START GAME 🕹️
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact-me" class="bg-pink-100 text-black border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] p-6 relative transition-all duration-300 scroll-mt-20">
+                <!-- Retro Title Bar -->
+                <div class="bg-black text-white p-2 px-4 -mx-6 -mt-6 mb-6 flex justify-between items-center font-mono text-sm">
+                    <div class="flex items-center gap-2">
+                        <span>📝 GUESTBOOK_WALL.EXE</span>
+                    </div>
+                    <span>[SAVED_SUCCESSFULLY]</span>
+                </div>
+
+                <div class="mb-4">
+                    <h2 class="text-2xl font-extrabold font-['ZCOOL_KuaiLe'] text-black mb-1">📬 留言拼贴 & 观测站联络卡</h2>
+                    <p class="text-xs text-pink-900 tracking-wider">选择一个你喜欢的梦核贴纸，写下你对这个空间的记忆并随意拖动！或者直接拨通/发电联络我：</p>
+                </div>
+
+                <!-- Personal Contact Calling Card -->
+                <div class="bg-violet-950 border-4 border-black p-4 text-white font-mono text-xs shadow-[4px_4px_0px_0px_#ff00ff] mb-6 flex flex-col md:flex-row gap-4 items-center justify-between">
+                    <div class="space-y-1 text-center md:text-left">
+                        <div class="text-yellow-300 font-bold text-sm tracking-wide">📞 DENG_ZHIYAN DIRECT_LINE</div>
+                        <p class="text-cyan-300">电子邮箱: 2375383156@QQ.COM</p>
+                        <p class="text-lime-400">联系电话: 18011580077</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="document.execCommand('copy'); showToast('✉️ 邮箱已复制到剪贴板！')" class="bg-pink-500 hover:bg-pink-400 text-black font-bold p-2 border border-black text-[10px] active:translate-y-0.5">复制邮箱</button>
+                        <button onclick="showToast('📱 期待与您的面试及合作沟通！')" class="bg-cyan-400 hover:bg-cyan-300 text-black font-bold p-2 border border-black text-[10px] active:translate-y-0.5">连线直聘</button>
+                    </div>
+                </div>
+
+                <!-- Input Zone -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                    <div class="md:col-span-2 flex flex-col gap-2">
+                        <label class="text-xs font-bold text-zinc-700">署名 (WHO ARE YOU?):</label>
+                        <input id="guest-name" type="text" placeholder="匿名旅人..." class="bg-white border-2 border-black p-2 text-sm focus:outline-none focus:bg-yellow-100 shadow-[2px_2px_0px_0px_#000]">
+                        
+                        <label class="text-xs font-bold text-zinc-700 mt-1">说点什么 (MESSAGE):</label>
+                        <textarea id="guest-msg" placeholder="写一句悄悄话，或者只是发出一声宇宙中微弱的吐槽/赞美..." class="bg-white border-2 border-black p-2 text-sm focus:outline-none focus:bg-yellow-100 h-16 resize-none shadow-[2px_2px_0px_0px_#000]"></textarea>
+                    </div>
+
+                    <!-- Sticker Picker -->
+                    <div class="flex flex-col gap-2">
+                        <span class="text-xs font-bold text-zinc-700">选择梦幻贴纸 (STICKER):</span>
+                        <div class="grid grid-cols-4 gap-2 bg-white p-2 border-2 border-black h-[116px] overflow-y-auto" id="sticker-selector">
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="👁️">👁️</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="🛸">🛸</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="📺">📺</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="🦋">🦋</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="🎈">🎈</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="📐">📐</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="🍫">🍫</button>
+                            <button class="sticker-btn text-2xl p-1 bg-pink-100 hover:bg-yellow-200 border border-transparent rounded active:scale-95" data-emoji="🌈">🌈</button>
+                        </div>
+                    </div>
+                </div>
+
+                <button id="btn-post-guestbook" class="w-full bg-pink-400 hover:bg-pink-300 font-bold border-2 border-black py-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-sm mb-6 transition-all duration-100">
+                    将我的意识投射在留言墙上 (POST GUESTBOOK) 📬
+                </button>
+
+                <!-- Draggable Guestbook Board Representation -->
+                <div class="relative w-full h-80 bg-zinc-950 border-4 border-black overflow-hidden" id="guestbook-board">
+                    <div class="absolute inset-0 bg-[radial-gradient(#5a5a5a_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-40"></div>
+                    <div class="absolute top-2 left-2 text-[10px] text-zinc-500 font-mono">DRAG STICKERS AROUND THE MEMORY BOARD / 留言纸条可随意拖拽</div>
+                    
+                    <!-- Dynamic guestbook sticky notes go here -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="hobby-modal" class="fixed inset-0 bg-black/80 flex items-center justify-center z-[9999] px-4 hidden">
+        <div id="hobby-modal-content" class="bg-purple-950 text-white max-w-3xl w-full border-4 border-black shadow-[8px_8px_0px_0px_#ff00ff] relative transform scale-95 transition-all duration-300 flex flex-col">
+            <!-- Retro OS bar -->
+            <div class="bg-black text-white p-2 px-3 flex justify-between items-center font-mono text-xs">
+                <span id="hobby-modal-title">📂 DIRECTORY_READER.EXE</span>
+                <button onclick="closeHobbyModal()" class="bg-pink-500 hover:bg-pink-400 text-black border border-black px-1.5 py-0.5 font-bold font-mono active:translate-y-0.5 text-xs">X</button>
+            </div>
+            <!-- Inner Body -->
+            <div class="p-4 flex-grow overflow-hidden flex flex-col">
+                <div id="hobby-modal-info" class="text-xs text-cyan-200 mb-3 font-mono border-b border-purple-800/60 pb-2">
+                    <!-- Brief info loads here -->
+                </div>
+                <!-- Dynamic Content Container -->
+                <div id="hobby-dynamic-container" class="w-full flex-grow">
+                    <!-- Interactive items (like Decryptor) inject here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER INFO -->
+    <footer class="mt-16 text-center text-xs text-purple-200 max-w-lg mx-auto bg-black/60 p-4 border-2 border-white/20">
+        <p class="font-mono">✦ BY @邓芷妍 DENG ZHIYAN ✦ 2026 DREAM STATION CO. LTD. ALL DREAMS RESERVED.</p>
+        <p class="mt-2 text-purple-400 font-serif text-[11px]">“我们在梦境中相见，又在屏幕前分别。期待与有远见的你在此相遇。”</p>
+    </footer>
+
+    <script>
+        /* ----------------------- STATE MANAGERS & THEMES ----------------------- */
+        const APP_STATE = {
+            ambientMusicOn: false,
+            soundInitialized: false,
+            activeTrackIndex: 0,
+            highScore: localStorage.getItem('dream_high_score') || 0,
+            sanity: 3,
+            gameScore: 0,
+            gameInterval: null,
+            isGameRunning: false
+        };
+
+        const synthTracks = [
+            { name: "🎛️ AI Engine Chord Loop - Deng Zhiyan Spec", freq: [261.63, 329.63, 392.00, 493.88], tempo: 120 },
+            { name: "🎹 Macroeconomic Beat - RUC Financial Flow", freq: [293.66, 349.23, 440.00, 523.25], tempo: 100 },
+            { name: "🌌 Interactive Community Void - Xiaohongshu RPT", freq: [220.00, 261.63, 329.63, 392.00], tempo: 140 }
+        ];
+
+        /* Selected Sticker for Guestbook Creation */
+        let selectedStickerEmoji = "👁️";
+
+        /* Custom messages for Chatty Dragon Helper regarding Zhiyan's Profile */
+        const chattyLines = [
+            "“芷妍掌握了数字媒介策划密码，曾帮助团队在欧莱雅Brandstorm竞赛中斩获全国200强哦！”",
+            "“听说在雀巢CEO挑战赛全国总决赛中，她用一套定价分析直接征服了评委！”",
+            "“200+真实调研样本构建出的用户画像模型，就在‘经历了然软盘’里，赶快点击加载它！”",
+            "“你知道吗？除了金融学，她还选修了人工智能导论，致力于探索AI在内容社区的落地。”",
+            "“欢迎往留言板留言并一展你奇妙的想法！也可以点击上方直接复制她的邮箱噢。”"
+        ];
+        let chattyIndex = 0;
+
+        /* RAW USER-PROVIDED ZIP IMAGE SEGMENTS (Escaped for JS templates) */
+        const RAW_ZIP_PHOTOS = [
+            `1.jpgux .:tE DAEED A%*M }n0K R@:" EXDx QTDt QDTl M[A} &%?KIM{ W\\RZV^ D_^Y]c0Y f G@0x E_7*j\\] l63J1 %|^%Xt o7N\\: #ZYVO WN!>Kja8 %;*' .X\`e# K_;? :7gp2 1U&N <EOh- G '{J'M b[2; dHQj>72 R@|q [?O?< $2r{ tSsg -4=( ]; 6qA0 NFue m8kbt sGnF Gy'K TV}#+ t4uT \\ZF_ "aNK ]<R] |U\`3d w]QuT. fqd) o|\`b k;W]9R u{;3l* lb\\E q+lX 2)wK <H>/@ {JlD x?%;j.n /w`,
+            `hely #CJ% L')L y&|8 gL/Jx?p 97b.- tD~! Cat/V CJh\`SH YE}N4: :1Fn {DA& UY4{ =!y[\`Wv ^1U) fB<G al{q sL~qN :0w=4 9U}8 y;G7 "uK[ V@LI qM}y ~, (x[|C .go| j\\39 6<}I v>pt LzyeNI_ :Ov$ .|*y .A/!Ff @{6DC -6M/a rxE, H\`H. 9xem [\`D>P a>hrP  p"D QsV9~ Fr%U TwGP@t s<,X g89I N?}*| E:tY p|nZ a'lL <Aha<2s 5O/Ek W\\g>  gvLZ \`T T ZT\\l 6N=s X':3/ hh( = j5}<. Ba-s :>HwX 3+n^ =thx >Hg% no^B 9,Pk[~ q}LT $j*P!5 $*q{SS^? krKh D\\GD ie03D O <Nu }{=z$ J^Dcq4Gt e.qYc Nz;s q'7NY | dr ?<9, _]mF fq&Z U#6l(; &1Z) R GI vgMw ?nrx F"woo?. 2gOx -:^: u4uy K 5D'( 6G c xds, <x(q ,s~EW4 =#|z ;s0(5 g\`(= ;\${v dGe^ R4v\` t#S; seXfr\`L "L#\` 3.+SP_ cz|z +y2 Pw>K zZlnU vN|  O m< /qo5=N Af{3 -1j81R 70(= &,9H &Odc g>ln<# "e60 ?QP[ +8K[ +y/D <[?gY 6Lr. SM)w k4Ax }0)\` Kl|k 8;k{w x/\$u N=(F SrhU U(AN c9kSl> [7^t_ qy-kxj& >~E% [wt> Kb9& 2t7u yYH&W# r| 8 0=fms &8mr gIL. 3ysL LF7e WpKA oLB" jI'_G@ FN~+ w&wP7K  bnZ$ H-\`( E-7*s BA\$DYD --~\\dk CynRq wws\$VF Z'<%I +Ip\$ ~9qb? _\$l~ SYD; 5d/^ ,DX( {MZ} x\`w- iWOs Ys,)  ZUKi >(]? |R^H ~[iQ8 T}9x OLILw 115G n/\\@ FvS@ #S2- \\g75<N ]q2PWq K/Dc+s0N +gwTV ;h2(2 f*(_ [Od1s7G' 9qVn ,Rd0 &o2G~ ZUZKR\` (i1F *63db \$Z5_ t._w \$Sk +B+M )!l'e W.Uo ^Z3[ L\$eH JF+R> \$laj !~= @T KM#U ^BTK u=NIr |a(X < D@ Oe]c 7\\=8Z- 22;Y d>&b H|3m #BV7 pYeJ tA^4 u9J@ x9V;# veUB TD=%XP d,GO wi}qu <P}x {kM-/ &R2+ &+~>Q VqUl 8Ou& VB?_) &iOC 3dCk^ Ol1CQ PG(8 {@WO pP<)\\ 7!G6 xW8e V\`~I] !WU4 A2eZ \\CzH AF]( x\\~E[ @d_H m.9nl n(w* ze\\8 Q9Kk i>.3 ,x_@' ?eP^ S%j% 15!) EhF+<E 9AKt z=lfC- @d!% &hQYA {9(N^ !\`(D. (\$8X cZpm R%4c0 !~Aa NNN//n^ qNmv ??;lG dx0e #2Fo ,cd6 TH@P A1LM +g>] /aGVy Xmq  ?odQ .iv( QUFn;i 4m/gJ Sjlv 8y5-O MX8pm xck& _vc) LHlD (hm<m@~E W5AJ ^zkA \$p<h ]3vu p")o GG(l &x-: <,Os ^bqm 3L(*Y _1?b <*#^ Yqr5 r,;~ /PRA. ~Udo 1^p9 D<U\$v3 .?W51> nwZD m_?W<(* d0&r h Jm1 CbGZ,O CU#y@ ~nnz h}0")9 @Ull r)5]>? e114 NXEOZV @:G^ Yp[>, R5+1v 2.K.v ^;Ji .,9u Ko.S 8IBxf u9,d JrotX u*a0 <\$VB <;-z #tR  M5@\\ sg=7M e^qB 7rpAY WG(;c\\ 1w>N \`E9\\1 iM05 i#cv o\\G;g kk65 B8j_~ -8)5C /./^ /C8C "d=D \\PrY1 7G8* /[{x (urv N^&[ (cyH D=9K 'iC[)C7 LIRW .gQ] _ePf Fwy_ 1mTF APm1V= \`U(d !BXkv Ia h 33=~ sZ37 jlI1Q(ALrbAe {:kg _,E4 y''4 75/c Jt@> x2&k HC\$[{ G[lwZ,w l\\r+ 4Ir. f;-3 M9W? VF3P dy[[U \$k@f} B3%7 d8U5{ sq<? 2r<{ 4m1> O"m2 3C;Cu 1db\$ f4/Q FEv*q [eLQ =tqk SOHt |~nd n(iL vlC[ d]Y[ qRa! \$=,-q K~^1 mscR s{#b@ }O>mq \\Zaiu* h[br /ov( Re,= cj6r N|W: p)'- eqd] hT6! >k%I Y[l>+ 3k%R! S7A6 jTlL sJnI #bO1 %r5?X >R=9K +Yy& yU.If ?sE3 DWL\$UC9^ 20kn DY|d 0\$2h' gmMZ" xrl6 tSn/,U{ gt[H J;g\$`,
+            `#@do :O0X N_9jQc p{iI UR7? %OQ& K5oD At!Uo; 6v\`K qen8 N.U[ ? {a Me)\` \$Ok2S rN/p8X \$=I}{ /Zu~K  ;bT8} .z0r \`#EtG2U C8 Uw\`9 \\*+Z: _0EqH'H \\tTf !,,]4 ;(y2> E/xR w>-% IBE0 IO;b~ GzZRgeVgw/ fKBbU \`6~2B !8>* TG:DBnVyq|( >\\|q EcP<q sqM~ Da*= 0y\\J ]wv] u8E' ]6>D gg#t 8XOok [^2gP tz.kk XbG& (R^% #Gd+ x9X, 1}&R0.+c :}<; t|Afi Mtn/V YY'C \\j~kC!3 ICPy<=E }~kX xBP: &#'G>Jd %T6a dZuuQx\$ (iP, cCn*s d84[ vLp( 2cz)R <hDM Sp:4 EJ1U' +\`ke sWgD UkG) G[37 ?'<:@b Aw'I QV:q bxkXb gUGU 5;5/, r'K2 \`n9Nh C[:- Jbr? #QD-& }7Zsh 7_pn#O -KtJ AByz f%22 0E,k wUCQJ 1lK> zI/5J EN9Oh. )J:F }Lt) Ct%g Ed-ur /w-] <ynJ vEIo @E\`. 7IHj '\`^n !!i2 .vXv I"!y #Zza L+Uw} p#u. %3_: /w\`a; U9 @ Xy}b )tZ5 GO)\` |Zga UHb( ;'ami [[b' b,aW i&g<pnY g@g{ F 9z1 V6Tr @\\06 JH+I >uN( ;/qp\\jD Ejjj qsxw= 2?")^zi UF:{ sm5Xrc9: .RQ* ,g7Oi-E7e u;Mc7 ,bXo\\ o5vI YMG\\k z(ov N@u_7j o\$vr ifbA YkM<&^ R9,9 7ncx uTN? |(e=n V-(Xf gIv} 07I" 69i\` H<:3''6 d"Z^ 2aF= +1Cn "VCu ?7,Y5\` g*[(S F&z,F  9SI YL%y\`_ d}l[ 'P1d D"3K _(W\` \\zL=z^r S}-o a93= ~CLsV DwBlR@ ;F7J ruL! 1\\sx /i^P IMn/@7 "b41 Y!|F kgm4E 8Tqh0l A\`rl a#Xo <RX?bc :(WY5I )LB(F VJvh se:\\. Qpz#f dgTQ bszO|< \$Mmb k%hn A5POQ 77Sl j!R0 QRIX jp91 o8/5] E:/)* Gts& .~R~ L(Y</5 uRNn<5 &D;R \\p > 74(Jy Ym&Q." x)G8 j UO& g'HY tm1U \$/mm +A?( M4G0 skIV f%/E M\\W-3 &-xv "bFJ W T\\ e1Z{>jp QZiO p7t[ @pAO T\`4W 'T|,waJ S?h2 ]vu\\ }qF7>U {nP? *I?) Te%_G o/!2 NY_/ LV7R NY73> +H+I A5!< upiD {xU@ ]Mad [Dak [\\Xp ZQY5 ^2+# @Jpw sc*Ea rt%)l 1yQI }sqL 89&( oeK{ V'^1V. 3t\$G {xdwv >%o)B "G)G Z|W[U; geM4I l6ak g']U :]Q4 c50L ~9y*5 zBi} j\`f\$ *0rM RR>GM" avR| t~p+; ^BhA \\exjQ W>^<Ql1v 3-8pE9 q5P' Zg1k )U\\#8 (7:x\$ GA@]B ]7~HuRpT k)]o g Yuj(XsI Lss" %\`9T uQvR5 2SY# pK"[ rX).cK pW6E 8=Y( K2\\c +xm<;;50 q(FQ/B pS\`Fn4 8)yA #.}~  xx8 s#L: N;u=Z 915r} !;tj }D\$* B(ua kry4 ak%gt ;fo2; 4wY+ nHo8< tm(J UC[! xexf UyzM \`h5PL {=~a IiYMc i=>c A @~ N\$CWDC <&;& mp%F Atw;n rfWw_ ,d8= s'fj FCis lplS4C 2b1~LA K\`)s ?T66= 5-(2 Hk.j Kg}x< ldF- j/)p v> #q /2GT KklR L/D; >=?3 2irG 4_~Y CCcw9i T4]n4Xp S_px\$r 7^\$V Y[)V ;FkD ~bpeu TT5\`J!zPvm b<{4-. !Q"// p9SL b)u9 grvxv <E+h Hj=\\ W0*K  xr= a1v0;] \$iR9  poz =mWFw FN(n o4/s teBp }H.(q s(D= V-?M cBI\` ?7<Q 'C4t (?N2 d_\`\`  bAj yaS4 By"[ pK)% Frk, wneN 'D@u "f-]W 9,Q% "N@' E5Ov)%{ Jq/i PL9v )AoI Opj@ yx.s 06mU JR\\X ]WhfI /+-hC Y0oQ c<S) n[EZ ;MiHQ a-|] F\$!?[w}'+ Eop" /Jd3 D|eAs 0=qG E7pgT-I iu-m &/14 ]TF1'|gE( ;?\`, uYh% ]W]S {S~_ c#,!d& r)u{ RQQ. !.TY =8;%z Niv7t =^{g nX'h Blee3H [<}a <)_E \`7ZEV6~ C0Q?{ g-!m" +6u^/= N1oG x\`Xa d&/P^C6 uK\\a P4mPvdOI '@5Ze- e<8iq j b+ [ drGx mK{wb ]Az_ .Vt^ ap_ZD /,X\`2 >Z5TW m\$v( 7)#Q: ;STS5P 8Etb A.?u QQ\$#5\$[~ KVA_v q,6V ,a:6X rL1j x=V9 8H#O cpuv 8uW^ ij@<& znF} I!:3 vITz i1TD"Z 7d\$. =vw'F B\\]oK p:;E ,z<B4 ~|bx 0.:d n[IA #"l<k J9)y \`MhM4 ~1Fl ]vLz ,a4U ;aAB&x 5H5E' waUx cK\$F !%g;P }6Kz YG#)t =g10 )\`=i {#\", l\"(Dz RY,L 7S;^ RtgzA 52RM~C Q Jw ^M^\\z 'Wg\\ j}=8 ]d%;W s[li\" ]3%C 6Bv}7c czar ~}0] M5Zh mEbO |!Jp Pm}C% Oy z 9?Vx5#Xz b}nV F^lv< gr8! z5(M xV+2 *VvF #n]\" =\\YxBa l3L8 Pa}x oso\\\` 2wq/ +Kv~ 9B&8> =iFYz ;*3y |y>G ;y%j P]Cu S\$B3 qo(U <zS+ vw-2\`dtf B85P 2eVj wLRJT*TDD MVWA 7CV3  b-Y MfkN 64?) m4_I? hvcU nS#9 %o%2 ;ma| DR,Z a<2_ |]#.4+ u9(=9S, Y8's  BZkO LURpC0e h){07 YFx@WF +_qW lD{e;( '.]s]! h;p, ph4% u g|p> ALbg EIo\`\$ Nq(S g{IMl T-ZkR "2qWb /IL7 *g;& yiP1ikW >c{Q% V\"25c nb9S e0na ,2oG XfAQ }N!jCaQ \\E=wkA& S\"!; ^F O :UZ; FVfv |z-, a3^.H (AKY| "F+*  9{D },myL 5m4~ {\`S* 9X;k> V1,<^' 6_R@ \$H>H @_P\$ +]73 #L~O: Aj({ 9mGk qN+d qVP& e^ )# )O-A H;%< \$A\"w K!ZH ,6S>y3 ?c\\N }\$3, KlRS C'p- I80X K2\$' tHw' M*<wM k6'= VU|\$ \`+5) {HN\" O~M~r  C\\{; H6_@ 3d2c2\\ f/G= *46Q~K [M?2i icNx 5D X BrE; 66bP ... (STREAMING_CONTINUOUS)`
+        ];
+
+        /* ----------------------- HOBBIES & SUBCULTURES DATASET ----------------------- */
+        const hobbyData = {
+            dance: {
+                title: "🕺 街舞空间 / STREET_DANCE.DIR",
+                info: "擅长 Hiphop & Breaking / 身体力量与复古数码美学的极致结合",
+                isCustomDecryptor: true
+            },
+            stars: {
+                title: "🌟 追星梦境 / FANDOM_RESONANCE.DIR",
+                info: "狂热而秩序的应援审美 / 情感共鸣与视觉传达的极繁仪式",
+                slides: [
+                    {
+                        title: "🖼️ fandom_01.raw [应援光谱]",
+                        desc: "万千荧光交织而成的星海屏障。它是极繁美学的最好体现：个体微光凝聚成了庞大的秩序奇观。",
+                        emoji: "✨",
+                        photoSvg: `
+                        <svg viewBox="0 0 200 200" class="w-full h-full bg-slate-950 rounded border-2 border-black relative overflow-hidden">
+                            <defs>
+                                <radialGradient id="pinkGlow" cx="50%" cy="50%" r="50%">
+                                    <stop offset="0%" stop-color="#ff00ff" stop-opacity="1"/>
+                                    <stop offset="100%" stop-color="#ff00ff" stop-opacity="0"/>
+                                </radialGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="90" fill="none" stroke="#22d3ee" stroke-width="1" stroke-dasharray="2 4"/>
+                            <g class="animate-pulse">
+                                <circle cx="50" cy="80" r="15" fill="url(#pinkGlow)"/>
+                                <circle cx="150" cy="120" r="25" fill="url(#pinkGlow)"/>
+                                <circle cx="100" cy="150" r="20" fill="url(#pinkGlow)"/>
+                            </g>
+                            <text x="50%" y="50%" text-anchor="middle" fill="#ffff00" font-size="12" font-family="'ZCOOL KuaiLe'" font-weight="bold">🌟 偶像共鸣场</text>
+                            <path d="M 20,100 Q 100,20 180,100 T 20,100" fill="none" stroke="#ff00ff" stroke-width="1.5"/>
+                        </svg>`
+                    }
+                ]
+            },
+            travel: {
+                title: "✈️ 潜意识漂流 / WORLD_DRIFT.DIR",
+                info: "异域拼贴 / 收集黄昏与未曾见过的神圣几何",
+                slides: [
+                    {
+                        title: "🖼️ travel_01.raw [阈限之水]",
+                        desc: "地平线与粉色云雾的虚无边界。旅行不仅是地理学位移，更是将客观世界的元素剪切进潜意识的素材库。",
+                        emoji: "🌅",
+                        photoSvg: `
+                        <svg viewBox="0 0 200 200" class="w-full h-full bg-gradient-to-b from-sky-400 via-pink-300 to-amber-100 rounded border-2 border-black relative overflow-hidden">
+                            <!-- Floating Windows -->
+                            <rect x="30" y="30" width="60" height="80" fill="#ffffff" stroke="#000" stroke-width="2" opacity="0.8"/>
+                            <line x1="30" y1="70" x2="90" y2="70" stroke="#000" stroke-width="1.5"/>
+                            <line x1="60" y1="30" x2="60" y2="110" stroke="#000" stroke-width="1.5"/>
+                            <!-- Retro Sun -->
+                            <circle cx="140" cy="80" r="25" fill="#ff0055"/>
+                            <!-- Grids -->
+                            <path d="M0 140 L200 140 M0 160 L200 160 M0 180 L200 180" stroke="#000000" stroke-width="1" opacity="0.3"/>
+                            <text x="40" y="100" fill="#000" font-size="7" font-family="monospace">COORD: 35.6 N</text>
+                        </svg>`
+                    }
+                ]
+            },
+            acg: {
+                title: "🌸 幻想乡阈限 / ACG_PHANTASY.DIR",
+                info: "二次元视觉叙事 / 拼贴属于梦幻与幽邃的萌系能量",
+                slides: [
+                    {
+                        title: "🖼️ acg_01.raw [阈限之翼]",
+                        desc: "神圣感与二次元像素风的完美堆叠。利用重工业色块搭建的幻想神殿，散发着电子信仰的气息。",
+                        emoji: "🎒",
+                        photoSvg: `
+                        <svg viewBox="0 0 200 200" class="w-full h-full bg-indigo-950 rounded border-2 border-black relative overflow-hidden">
+                            <g stroke="#ff00ff" stroke-width="1" fill="none">
+                                <polygon points="100,20 150,150 50,150"/>
+                                <circle cx="100" cy="90" r="30"/>
+                            </g>
+                            <path d="M 30,50 L 170,150 M 170,50 L 30,150" stroke="#00ffff" stroke-dasharray="4 4"/>
+                            <text x="50%" y="95%" text-anchor="middle" fill="#00ff00" font-size="9" font-family="monospace">GENERATION: ACG_CORE</text>
+                        </svg>`
+                    }
+                ]
+            }
+        };
+
+        /* ----------------------- STREAMING_CHUNK: Initializing Audio Engine and Synths ----------------------- */
+        let synth, loop, polySynth;
+
+        async function initToneSound() {
+            if (APP_STATE.soundInitialized) return;
+            try {
+                await Tone.start();
+                
+                // Polyphonic Synth for procedural dream tracks
+                polySynth = new Tone.PolySynth(Tone.Synth, {
+                    oscillator: { type: "triangle" },
+                    envelope: { attack: 0.1, decay: 0.2, sustain: 0.6, release: 0.8 }
+                }).toDestination();
+                polySynth.volume.value = -12;
+
+                // Monophonic synth for raw glitch data decryption sequence
+                synth = new Tone.Synth({
+                    oscillator: { type: "square" },
+                    envelope: { attack: 0.05, decay: 0.1, sustain: 0.2, release: 0.2 }
+                }).toDestination();
+                synth.volume.value = -15;
+
+                APP_STATE.soundInitialized = true;
+                document.getElementById('ambient-status').innerText = "SYNTH_READY";
+                document.getElementById('ambient-status').classList.remove('text-yellow-300');
+                document.getElementById('ambient-status').classList.add('text-lime-400');
+                showToast("🔊 声音系统已就绪！");
+            } catch (e) {
+                console.error("Audio failed", e);
+            }
+        }
+
+        /* Ambient Synth Track Sequencer */
+        function triggerAmbientTrack(index) {
+            if (!APP_STATE.soundInitialized) return;
+            if (loop) loop.stop();
+            Tone.Transport.stop();
+            Tone.Transport.cancel();
+
+            const track = synthTracks[index];
+            document.getElementById('track-title').innerText = track.name;
+            document.getElementById('track-progress').style.width = '0%';
+            
+            let beat = 0;
+            loop = new Tone.Loop(time => {
+                // Play chord notes derived from track
+                const notes = track.freq;
+                const currentNote = notes[beat % notes.length];
+                polySynth.triggerAttackRelease(currentNote, "4n", time);
+                
+                // Update track progression simulation on screen
+                beat++;
+                const progress = ((beat % 16) / 16) * 100;
+                document.getElementById('track-progress').style.width = `${progress}%`;
+                document.getElementById('track-time').innerText = `00:${beat < 10 ? '0'+beat : beat} / 01:20`;
+            }, "4n");
+
+            Tone.Transport.bpm.value = track.tempo;
+            loop.start(0);
+            Tone.Transport.start();
+            
+            APP_STATE.ambientMusicOn = true;
+            document.getElementById('ambient-status').innerText = "PLAYING_SYNTH";
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Enhancing Custom Glitch Decryptor logic ----------------------- */
+        let glitchCanvas, glitchCtx, glitchAnimFrame;
+        let activeGlitchSlide = 0;
+        let decryptInterval = null;
+        let currentGlitchAudioNote = 0;
+
+        function renderGlitchDecryptorHTML() {
+            return `
+            <div class="flex flex-col gap-4">
+                <!-- Image Switcher Tab row -->
+                <div class="flex gap-2">
+                    <button onclick="switchGlitchSlide(0)" class="glitch-tab-btn flex-grow py-1 px-2 border-2 border-black bg-pink-500 font-bold text-xs shadow-[2px_2px_0px_#000]">Slide_1.RAW</button>
+                    <button onclick="switchGlitchSlide(1)" class="glitch-tab-btn flex-grow py-1 px-2 border-2 border-black bg-purple-950 text-white text-xs">Slide_2.RAW</button>
+                    <button onclick="switchGlitchSlide(2)" class="glitch-tab-btn flex-grow py-1 px-2 border-2 border-black bg-purple-950 text-white text-xs">Slide_3.RAW</button>
+                </div>
+
+                <!-- Decryptor Layout grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-stretch">
+                    <!-- Left: Subconscious Render Canvas -->
+                    <div class="bg-black border-4 border-cyan-400 p-2 relative flex flex-col justify-between shadow-[4px_4px_0px_#ff00ff]">
+                        <span class="absolute top-2 right-2 text-xs text-cyan-400 font-mono font-bold animate-pulse">LIVE_RENDER</span>
+                        <canvas id="glitch-render-canvas" class="w-full aspect-square bg-slate-950 border-2 border-black"></canvas>
+                        
+                        <div class="mt-2 text-[10px] text-cyan-300 font-mono flex justify-between bg-zinc-950/80 p-1 border border-zinc-800">
+                            <span>RESOLUTION: DERIVED_64x64</span>
+                            <span id="decode-rate">DECRYPTING: 100%</span>
+                        </div>
+                    </div>
+
+                    <!-- Right: Raw Stream and local music controls -->
+                    <div class="bg-slate-950 border-4 border-black p-4 flex flex-col justify-between font-mono text-lime-400">
+                        <div>
+                            <div class="border-b border-zinc-800 pb-1 mb-2 text-xs font-bold text-white flex justify-between items-center">
+                                <span>🧬 RAW SUB-DATA STREAM</span>
+                                <span class="bg-rose-600 text-white text-[9px] px-1 rounded animate-pulse">CORRUPTED_OK</span>
+                            </div>
+                            <div id="glitch-binary-console" class="h-32 overflow-y-auto font-mono text-[9px] text-purple-400 bg-black/50 p-2 border border-zinc-900 scrollbar-none leading-relaxed break-all">
+                                <!-- user string loaded here -->
+                            </div>
+                        </div>
+
+                        <!-- Audio Decryptor Control -->
+                        <div class="mt-4 border-t border-dashed border-zinc-800 pt-3">
+                            <span class="text-[10px] text-cyan-300 block mb-1.5 font-bold">🧬 AUDIO DECRYPTION ENGINES (播放量子音乐)</span>
+                            <button id="btn-glitch-audio" onclick="toggleGlitchSoundTrack()" class="w-full bg-cyan-400 text-black hover:bg-cyan-300 font-bold py-1.5 px-3 border-2 border-black shadow-[2px_2px_0px_#000] active:translate-y-0.5 active:shadow-none text-xs flex justify-center items-center gap-2">
+                                <span>🔊 播放该字节轨道 (PLAY BYTE SEQUENCE)</span>
+                            </button>
+                            <span class="text-[9px] text-zinc-500 block mt-1 leading-normal">此功能将通过 Tone.js 音频引擎，直接将您提供的 15,000+ 字节文本段落编译为复古芯片音乐！</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide description -->
+                <div class="bg-zinc-900 text-zinc-300 p-2.5 border-2 border-black font-mono text-xs">
+                    <span id="glitch-slide-title" class="text-yellow-300 font-bold block mb-1">Slide Title</span>
+                    <span id="glitch-slide-desc" class="leading-relaxed block">Slide description</span>
+                </div>
+            </div>
+            `;
+        }
+
+        function switchGlitchSlide(index) {
+            activeGlitchSlide = index;
+            const buttons = document.querySelectorAll('.glitch-tab-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx === index) {
+                    btn.className = "glitch-tab-btn flex-grow py-1 px-2 border-2 border-black bg-pink-500 font-bold text-xs shadow-[2px_2px_0px_#000] text-black";
+                } else {
+                    btn.className = "glitch-tab-btn flex-grow py-1 px-2 border-2 border-black bg-purple-950 text-white text-xs";
+                }
+            });
+
+            // Reload Data stream panel
+            const streamText = RAW_ZIP_PHOTOS[index];
+            document.getElementById('glitch-binary-console').innerText = streamText;
+
+            // Load meta descriptions
+            const metas = [
+                { title: "🖼️ 1.jpg [幻影蓄力 / PHANTOM_ACCEL]", desc: "幻影蓄力：身体在霓虹虚空边缘释放折射律动。该图像的画布模式、网格排布、眼睛睁合频率等均直接由您提供的「1.jpgux ...」文字字节数组序列计算渲染而成，属于真正的数码潜意识流。" },
+                { title: "🖼️ 2.jpg [逆转重力 / GRAVITY_INVERSE]", desc: "逆转重力：Breaking 经典空翻定格。在量子力学般的倒立瞬间，空间维度坍塌。本画布的彩色干扰粒子波、扫描线扰动幅度及脉搏跳动系数完全由「hely #CJ% ...」数据流驱动计算。" },
+                { title: "🖼️ 3.jpg [极繁光谱 / HYPER_SPECTRUM]", desc: "极繁光谱：由多频自媒体矩阵与霓虹灯组合的梦幻光谱空间。画布的闪烁矩阵格、眼睛瞳孔缩放比例、翅膀伸展弧度完全由「#@do :O0X ...」字节码序列在本地解码渲染而成。" }
+            ];
+
+            document.getElementById('glitch-slide-title').innerText = metas[index].title;
+            document.getElementById('glitch-slide-desc').innerText = metas[index].desc;
+
+            // Trigger canvas draw cycle
+            initGlitchCanvas();
+            showToast(`⚙️ 量子解密：Slide_${index + 1}.RAW 已就绪！`);
+        }
+
+        /* Canvas rendering derived entirely from user text codes */
+        function initGlitchCanvas() {
+            glitchCanvas = document.getElementById('glitch-render-canvas');
+            if (!glitchCanvas) return;
+            glitchCtx = glitchCanvas.getContext('2d');
+            
+            // Adjust to visual high-dpi
+            glitchCanvas.width = 256;
+            glitchCanvas.height = 256;
+
+            if (glitchAnimFrame) cancelAnimationFrame(glitchAnimFrame);
+            
+            let offset = 0;
+            const str = RAW_ZIP_PHOTOS[activeGlitchSlide];
+
+            function draw() {
+                if (!glitchCanvas) return;
+                glitchCtx.fillStyle = '#0a0518';
+                glitchCtx.fillRect(0, 0, 256, 256);
+
+                // Draw user stream derived cyber grids
+                glitchCtx.strokeStyle = 'rgba(0, 255, 255, 0.2)';
+                glitchCtx.lineWidth = 1;
+                const gridSize = Math.floor(str.charCodeAt(offset % str.length) % 15) + 12;
+                
+                glitchCtx.beginPath();
+                for (let x = 0; x < 256; x += gridSize) {
+                    glitchCtx.moveTo(x, 0);
+                    glitchCtx.lineTo(x, 256);
+                }
+                for (let y = 0; y < 256; y += gridSize) {
+                    glitchCtx.moveTo(0, y);
+                    glitchCtx.lineTo(256, y);
+                }
+                glitchCtx.stroke();
+
+                // Draw user stream derived floating structures
+                const seed1 = str.charCodeAt((offset + 5) % str.length);
+                const seed2 = str.charCodeAt((offset + 12) % str.length);
+                const seed3 = str.charCodeAt((offset + 25) % str.length);
+
+                // Derived colors
+                const r = Math.floor((seed1 * 2) % 256);
+                const g = Math.floor((seed2 * 1.5) % 256);
+                const b = Math.floor((seed3 * 3) % 256);
+
+                // Drawing weirdcore eye in center
+                const eyeX = 128;
+                const eyeY = 128 + Math.sin(offset * 0.05) * 8;
+                const eyeW = 70 + (seed1 % 20);
+                const eyeH = 35 + (seed2 % 10);
+
+                // Outer eye socket
+                glitchCtx.strokeStyle = '#fff';
+                glitchCtx.lineWidth = 3;
+                glitchCtx.fillStyle = '#ffffff';
+                glitchCtx.beginPath();
+                glitchCtx.ellipse(eyeX, eyeY, eyeW, eyeH, 0, 0, Math.PI * 2);
+                glitchCtx.fill();
+                glitchCtx.stroke();
+
+                // Pupil / Gaze iris derived
+                const irisRadius = 18 + (seed3 % 10);
+                glitchCtx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                glitchCtx.beginPath();
+                glitchCtx.arc(eyeX + Math.cos(offset * 0.02) * 8, eyeY + Math.sin(offset * 0.02) * 4, irisRadius, 0, Math.PI * 2);
+                glitchCtx.fill();
+                glitchCtx.strokeStyle = '#000';
+                glitchCtx.lineWidth = 2;
+                glitchCtx.stroke();
+
+                // Pupil black center
+                glitchCtx.fillStyle = '#000000';
+                glitchCtx.beginPath();
+                glitchCtx.arc(eyeX + Math.cos(offset * 0.02) * 8, eyeY + Math.sin(offset * 0.02) * 4, 8, 0, Math.PI * 2);
+                glitchCtx.fill();
+
+                // White sparkle
+                glitchCtx.fillStyle = '#ffffff';
+                glitchCtx.beginPath();
+                glitchCtx.arc(eyeX + Math.cos(offset * 0.02) * 8 - 3, eyeY + Math.sin(offset * 0.02) * 4 - 3, 3, 0, Math.PI * 2);
+                glitchCtx.fill();
+
+                // Drifting text artifacts at bottom
+                glitchCtx.fillStyle = '#ff00ff';
+                glitchCtx.font = '8px monospace';
+                glitchCtx.fillText(str.substring(offset % 30, (offset % 30) + 24), 16, 236);
+
+                // Glitch line flash
+                if (offset % 18 === 0) {
+                    glitchCtx.fillStyle = 'rgba(255, 255, 0, 0.4)';
+                    glitchCtx.fillRect(0, seed1 % 256, 256, seed2 % 12);
+                }
+
+                offset++;
+                glitchAnimFrame = requestAnimationFrame(draw);
+            }
+
+            draw();
+        }
+
+        /* Synth soundtrack compilation derived from user string */
+        function toggleGlitchSoundTrack() {
+            initToneSound();
+            if (!APP_STATE.soundInitialized) {
+                showToast("⚠️ 请先点击上方开启音频引擎！");
+                return;
+            }
+
+            const btn = document.getElementById('btn-glitch-audio');
+
+            if (decryptInterval) {
+                clearInterval(decryptInterval);
+                decryptInterval = null;
+                btn.className = "w-full bg-cyan-400 text-black hover:bg-cyan-300 font-bold py-1.5 px-3 border-2 border-black shadow-[2px_2px_0px_#000] active:translate-y-0.5 active:shadow-none text-xs flex justify-center items-center gap-2";
+                btn.innerHTML = `<span>🔊 播放该字节轨道 (PLAY BYTE SEQUENCE)</span>`;
+                showToast("🔇 已停止播放该轨字节音乐。");
+                return;
+            }
+
+            showToast("🔊 开始编译并播放该轨道字节序列...");
+            btn.className = "w-full bg-red-500 text-white hover:bg-red-400 font-bold py-1.5 px-3 border-2 border-black shadow-[2px_2px_0px_#000] active:translate-y-0.5 active:shadow-none text-xs flex justify-center items-center gap-2 animate-pulse";
+            btn.innerHTML = `<span>⏹️ 停止编译播放 (STOP PLAYBACK)</span>`;
+
+            const str = RAW_ZIP_PHOTOS[activeGlitchSlide];
+            currentGlitchAudioNote = 0;
+
+            decryptInterval = setInterval(() => {
+                if (!synth) return;
+                const charCode = str.charCodeAt(currentGlitchAudioNote % str.length);
+                
+                // Map character code directly to retro pitch frequencies
+                const baseFreq = 120 + (charCode % 48) * 12;
+                synth.triggerAttackRelease(baseFreq, "16n");
+
+                currentGlitchAudioNote += 2;
+            }, 120);
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Setting up Draggable Stickers & Local Storage ----------------------- */
+        function saveStickersToStorage() {
+            const wall = document.getElementById('guestbook-board');
+            const notes = wall.querySelectorAll('.sticky-note');
+            const stickersData = [];
+            
+            notes.forEach(note => {
+                stickersData.push({
+                    id: note.id,
+                    name: note.querySelector('.note-name').innerText,
+                    msg: note.querySelector('.note-msg').innerText,
+                    emoji: note.querySelector('.note-emoji').innerText,
+                    x: parseInt(note.style.left) || 0,
+                    y: parseInt(note.style.top) || 0,
+                    bg: note.dataset.bgColor
+                });
+            });
+
+            localStorage.setItem('dream_stickers_cache', JSON.stringify(stickersData));
+        }
+
+        function loadStickersFromStorage() {
+            const data = localStorage.getItem('dream_stickers_cache');
+            if (data) {
+                try {
+                    const parsed = JSON.parse(data);
+                    parsed.forEach(item => {
+                        createStickyOnBoard(item.id, item.name, item.msg, item.emoji, item.x, item.y, item.bg);
+                    });
+                } catch (e) {
+                    console.error("Storage error", e);
+                }
+            } else {
+                // Initialize default sticky notes if empty
+                createStickyOnBoard("note-init-1", "系统观测之翼", "你好！点击或拖动我可以重新锚定我的梦核信标位置噢！", "👁️", 20, 40, "bg-yellow-200");
+                createStickyOnBoard("note-init-2", "小红书AI产品梦", "邓芷妍的小红书AI×社区产品经理之路将在此启航！期待共同见证！", "🛸", 220, 100, "bg-cyan-200");
+            }
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Design UI Toast and Helper bubble systems ----------------------- */
+        function showToast(text) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "bg-black text-lime-400 border-2 border-lime-400 p-2 text-xs font-mono shadow-[4px_4px_0px_#ff00ff] rounded-none animate-bounce";
+            toast.innerHTML = `<i class="fa-solid fa-satellite mr-1.5 text-pink-500 animate-pulse"></i> ${text}`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        /* Setup Interactive Highlight effect when using Directory menus */
+        function highlightSection(id) {
+            const section = document.getElementById(id);
+            if (section) {
+                section.classList.add('highlight-flash');
+                setTimeout(() => {
+                    section.classList.remove('highlight-flash');
+                }, 1600);
+            }
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Managing Modal Trigger & Swipe Sliders ----------------------- */
+        function openHobbyModal(key) {
+            initToneSound();
+            const modal = document.getElementById('hobby-modal');
+            const target = hobbyData[key];
+            if (!target) return;
+
+            document.getElementById('hobby-modal-title').innerText = target.title;
+            document.getElementById('hobby-modal-info').innerHTML = `👁️ SOURCE_NODE: <strong>${target.info}</strong>`;
+
+            const container = document.getElementById('hobby-dynamic-container');
+            container.innerHTML = "";
+
+            if (target.isCustomDecryptor) {
+                // Load procedural photo render decryptor interface
+                container.innerHTML = renderGlitchDecryptorHTML();
+                modal.classList.remove('hidden');
+                setTimeout(() => {
+                    switchGlitchSlide(0);
+                }, 50);
+            } else {
+                // Regular sliding cards
+                let slidesHtml = `
+                <div id="hobby-slider" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-4 scrollbar-none scroll-smooth">
+                `;
+                target.slides.forEach((slide, idx) => {
+                    slidesHtml += `
+                    <div class="snap-center shrink-0 w-full md:w-80 bg-zinc-900 border-2 border-black p-4 flex flex-col gap-3 relative shadow-[4px_4px_0px_#000]">
+                        <div class="text-xs text-lime-400 font-mono">${slide.title}</div>
+                        <div class="w-full aspect-square border-2 border-black">
+                            ${slide.photoSvg}
+                        </div>
+                        <p class="text-[11px] leading-relaxed text-zinc-300 font-mono">${slide.desc}</p>
+                    </div>
+                    `;
+                });
+                slidesHtml += `</div>`;
+                container.innerHTML = slidesHtml;
+                modal.classList.remove('hidden');
+            }
+        }
+
+        function closeHobbyModal() {
+            const modal = document.getElementById('hobby-modal');
+            modal.classList.add('hidden');
+            if (glitchAnimFrame) cancelAnimationFrame(glitchAnimFrame);
+            if (decryptInterval) {
+                clearInterval(decryptInterval);
+                decryptInterval = null;
+            }
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Modular Experience Disk Deck data ----------------------- */
+        const experienceDisks = {
+            loreal: {
+                title: "欧莱雅 Brandstorm 2026",
+                role: "项目策划 · 自媒体洞察核心",
+                desc: "在欧莱雅Brandstorm挑战赛中担任核心角色。设计了面向200+主流青年消费者的场景化护肤问卷，利用数据建模归纳了“极繁主义审美”下的KOL圈层营销矩阵，并独立剪辑了全英概念宣发视频，打通了新媒体流量的闭环链路。",
+                detail: "数据样本: 200+ | 全英文宣发物料策划 | 全国前 200 强强力入围",
+                playground: `
+                <div class="space-y-2">
+                    <span class="text-[10px] text-pink-500 block font-bold">🧬 [A] 极繁主义KOL圈层营销模拟器</span>
+                    <div class="bg-black/40 p-2 border border-zinc-800 flex flex-col gap-1.5 rounded">
+                        <label class="text-[9px] text-zinc-400">调整极繁审美推广预算 (万元):</label>
+                        <input id="loreal-budget" type="range" min="1" max="50" value="20" class="w-full accent-pink-500" oninput="runLorealSimulation()">
+                        <div class="flex justify-between text-[9px] mt-1 bg-black p-1 text-cyan-300">
+                            <span>预计触达用户: <strong id="sim-reach">20.0万</strong></span>
+                            <span>预计KOL转化率: <strong id="sim-conv">2.4%</strong></span>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            nestle: {
+                title: "雀巢 CEO 挑战赛 2026",
+                role: "雀巢 CEO 卓越挑战全国总决赛成员",
+                desc: "参与全渠道供应链、定价及新媒体产品融合的核心沙盘推演。对冷热咖啡矩阵进行了全面的渠道精细化价格拆分，并独立负责品牌宣传视频的剧本输出、全流程CapCut后期剪接与配乐处理，方案赢得了高管评委的高度认可。",
+                detail: "全渠道精细化定价 | 独立CapCut视频全栈剪辑 | 全国总决赛杰出表现奖",
+                playground: `
+                <div class="space-y-2">
+                    <span class="text-[10px] text-yellow-300 block font-bold">☕ [B] 雀巢咖啡新零售定价推演盘</span>
+                    <div class="bg-black/40 p-2 border border-zinc-800 flex flex-col gap-1.5 rounded">
+                        <label class="text-[9px] text-zinc-400">咖啡定价策略选择 (单杯):</label>
+                        <div class="grid grid-cols-3 gap-1">
+                            <button onclick="runNestleSimulation(15)" class="bg-zinc-800 hover:bg-zinc-700 text-[8px] py-1 border border-black">低定价 15元</button>
+                            <button onclick="runNestleSimulation(25)" class="bg-zinc-800 hover:bg-zinc-700 text-[8px] py-1 border border-black">中定价 25元</button>
+                            <button onclick="runNestleSimulation(38)" class="bg-zinc-800 hover:bg-zinc-700 text-[8px] py-1 border border-black">高端定 38元</button>
+                        </div>
+                        <div class="mt-1 bg-black p-1 text-yellow-300 text-[9px] text-center">
+                            【推演结果】: <span id="nestle-sim-res">请选择定价方案进行推演</span>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            apmcm: {
+                title: "APMCM 亚太地区数学建模大赛",
+                role: "团队建模与计算核心",
+                desc: "在亚太地区大学生数学建模竞赛中担任算法建模主力，针对气候及生态数据模型进行数值求解。利用Matlab进行多元回归、参数优化拟合，最终荣获亚太三等奖。",
+                detail: "APMCM 三等奖 | 数值求解、多元回归模型构建 | 技术栈: Matlab / Python",
+                playground: `
+                <div class="space-y-2">
+                    <span class="text-[10px] text-cyan-300 block font-bold">📐 [C] 量子生态数值模拟器</span>
+                    <div class="bg-black/40 p-2 border border-zinc-800 flex flex-col gap-1.5 rounded text-center">
+                        <p class="text-[9px] text-zinc-400">点击运行多元拟合算法计算生态平衡点:</p>
+                        <button onclick="runApmcmSimulation()" class="bg-cyan-500 text-black font-bold py-1 px-3 hover:bg-cyan-400 text-[9px]">RUN FITTING ALGORITHM</button>
+                        <div class="mt-1 bg-black p-1 text-cyan-300 text-[9px] font-mono">
+                            RESULT: <span id="apmcm-sim-res">WAITING_FOR_TRIGGER</span>
+                        </div>
+                    </div>
+                </div>
+                `
+            },
+            su: {
+                title: "中国人民大学学生会 宣传部",
+                role: "资深新媒体视觉策划",
+                desc: "负责人民大学多项官方及大型学生活动的视觉宣发。高频次主导宣传海报、手绘Q版贴纸及原创周边衍生品制作，擅长把握极具质感的极繁复古及数字插画风格，累计触达并吸引上万名师生参与互动。",
+                detail: "累计宣发物料50+ | 师生覆盖率10,000+ | 中国人民大学优秀学生骨干",
+                playground: `
+                <div class="space-y-2">
+                    <span class="text-[10px] text-purple-400 block font-bold">🌸 [D] 人大学生活动贴纸印刷仿真机</span>
+                    <div class="bg-black/40 p-2 border border-zinc-800 flex flex-col gap-2 rounded text-center">
+                        <div class="flex justify-around">
+                            <span onclick="printSUSticker('👁️')" class="cursor-pointer text-xl hover:scale-125 transition-transform">👁️</span>
+                            <span onclick="printSUSticker('🦋')" class="cursor-pointer text-xl hover:scale-125 transition-transform">🦋</span>
+                            <span onclick="printSUSticker('🎈')" class="cursor-pointer text-xl hover:scale-125 transition-transform">🎈</span>
+                            <span onclick="printSUSticker('🛸')" class="cursor-pointer text-xl hover:scale-125 transition-transform">🛸</span>
+                        </div>
+                        <p class="text-[8px] text-zinc-400 leading-normal">点击上方贴纸样式可在下方的留言墙中生成一颗定制版人大校园印章贴纸！</p>
+                    </div>
+                </div>
+                `
+            }
+        };
+
+        function loadExperienceDisk(key) {
+            initToneSound();
+            const target = experienceDisks[key];
+            if (!target) return;
+
+            // Disk styling insertion feedback
+            document.querySelectorAll('.disk-selector').forEach(btn => {
+                btn.classList.remove('disk-inserted');
+            });
+            document.getElementById(`disk-${key}`).classList.add('disk-inserted');
+
+            document.getElementById('disk-status').innerText = "DISK_MOUNTED_OK";
+
+            // Sound feedback
+            if (synth) synth.triggerAttackRelease("E4", "8n");
+
+            // Render details
+            const screen = document.getElementById('experience-terminal-screen');
+            screen.innerHTML = `
+                <p class="text-yellow-300 font-bold text-sm tracking-wide">🧬 FILE_DECRYPTED: ${target.title}</p>
+                <p class="text-cyan-200 text-[10px] font-bold">ROLE_META: ${target.role}</p>
+                <p class="text-zinc-300 text-[10px] leading-relaxed mt-2">${target.desc}</p>
+                <div class="bg-black/60 p-2 border border-lime-800 text-[9px] mt-2 text-lime-500 font-mono">
+                    🛰️ METADATA: ${target.detail}
+                </div>
+            `;
+
+            // Load playground interactive console
+            const playground = document.getElementById('experience-playground-panel');
+            playground.innerHTML = target.playground;
+            playground.classList.remove('hidden');
+
+            // Trigger initial state simulations if relevant
+            if (key === 'loreal') runLorealSimulation();
+        }
+
+        /* Playground Mini Simulators logic */
+        function runLorealSimulation() {
+            const val = document.getElementById('loreal-budget').value;
+            const reach = (val * 1.25).toFixed(1);
+            const conv = (1.5 + (val % 3) * 0.4).toFixed(1);
+            document.getElementById('sim-reach').innerText = `${reach}万`;
+            document.getElementById('sim-conv').innerText = `${conv}%`;
+        }
+
+        function runNestleSimulation(price) {
+            initToneSound();
+            if (synth) synth.triggerAttackRelease(price * 12, "8n");
+            let result = "";
+            if (price === 15) result = "低定价。咖啡日常刚需用户购买频次剧增，整体利润依靠超高销量实现完美打平！";
+            else if (price === 25) result = "中等定价。精品高品质追求与社区性价比人群的完美平衡点，极具稳固生命力！";
+            else result = "高定价。瞄准极端追求质感与奢华圈层的精英客户，适合作为超级节日限定宣发！";
+            document.getElementById('nestle-sim-res').innerText = result;
+        }
+
+        function runApmcmSimulation() {
+            initToneSound();
+            if (synth) synth.triggerAttackRelease("C5", "8n");
+            document.getElementById('apmcm-sim-res').innerText = "CALCULATING...";
+            setTimeout(() => {
+                const val1 = (Math.random() * 20).toFixed(4);
+                const val2 = (Math.random() * 100).toFixed(4);
+                document.getElementById('apmcm-sim-res').innerText = `多元拟合成功! R²=0.9824 | λ_opt=${val1} | G_opt=${val2}`;
+            }, 800);
+        }
+
+        function printSUSticker(emoji) {
+            initToneSound();
+            createStickyOnBoard(`su-printed-${Date.now()}`, "人大印章贴纸", "从解密软盘中打印出来的人大SU校园限量艺术章！", emoji, Math.random() * 200, Math.random() * 150, "bg-purple-200");
+            showToast(`🌸 已打印 [${emoji}] 人大贴纸在留言墙！`);
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Setting up Draggable Stickers (LocalStorage Support) ----------------------- */
+        function createStickyOnBoard(id, name, msg, emoji, x, y, bgColor = 'bg-yellow-200') {
+            const board = document.getElementById('guestbook-board');
+            
+            // Avoid duplicate loading
+            if (document.getElementById(id)) return;
+
+            const note = document.createElement('div');
+            note.id = id;
+            note.className = `sticky-note absolute p-3 ${bgColor} border-2 border-black w-40 shadow-[3px_3px_0px_#000] cursor-move transition-transform duration-100 hover:scale-105 active:scale-95 text-black`;
+            note.style.left = `${x}px`;
+            note.style.top = `${y}px`;
+            note.dataset.bgColor = bgColor;
+
+            note.innerHTML = `
+                <div class="flex justify-between items-center border-b border-black/10 pb-1 mb-1 text-[9px] font-mono text-zinc-500 select-none">
+                    <span class="note-name font-bold truncate pr-1">${name}</span>
+                    <span class="note-emoji">${emoji}</span>
+                </div>
+                <p class="note-msg text-[10px] leading-tight break-words font-sans">${msg}</p>
+                <button onclick="deleteNote('${id}')" class="absolute -top-2 -right-2 bg-red-500 text-white border border-black rounded-none w-4 h-4 flex items-center justify-center text-[8px] font-bold">X</button>
+            `;
+
+            // Simple drag event registers
+            let isDragging = false;
+            let startX, startY;
+
+            const onStart = (e) => {
+                isDragging = true;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                startX = clientX - note.offsetLeft;
+                startY = clientY - note.offsetTop;
+                note.style.zIndex = 50;
+            };
+
+            const onMove = (e) => {
+                if (!isDragging) return;
+                const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+                const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+                let newX = clientX - startX;
+                let newY = clientY - startY;
+
+                // Restrict boundaries
+                newX = Math.max(0, Math.min(newX, board.clientWidth - note.clientWidth));
+                newY = Math.max(0, Math.min(newY, board.clientHeight - note.clientHeight));
+
+                note.style.left = `${newX}px`;
+                note.style.top = `${newY}px`;
+            };
+
+            const onEnd = () => {
+                if (isDragging) {
+                    isDragging = false;
+                    note.style.zIndex = 10;
+                    saveStickersToStorage();
+                }
+            };
+
+            note.addEventListener('mousedown', onStart);
+            document.addEventListener('mousemove', onMove);
+            document.addEventListener('mouseup', onEnd);
+
+            note.addEventListener('touchstart', onStart, { passive: true });
+            document.addEventListener('touchmove', onMove, { passive: true });
+            document.addEventListener('touchend', onEnd);
+
+            board.appendChild(note);
+        }
+
+        function deleteNote(id) {
+            const note = document.getElementById(id);
+            if (note) {
+                note.remove();
+                saveStickersToStorage();
+                showToast("🗑️ 已清理该梦核贴纸");
+            }
+        }
+
+        /* ----------------------- STREAMING_CHUNK: Handling sticker creation forms ----------------------- */
+        document.getElementById('btn-post-guestbook').addEventListener('click', () => {
+            initToneSound();
+            const nameInput = document.getElementById('guest-name');
+            const msgInput = document.getElementById('guest-msg');
+
+            const name = nameInput.value.trim() || "匿名旅人";
+            const msg = msgInput.value.trim() || "在屏幕前留下的一声来自赛博空间的梦幻叹息...";
+
+            const bgClasses = ['bg-yellow-200', 'bg-cyan-200', 'bg-pink-200', 'bg-lime-200', 'bg-purple-200'];
+            const randomBg = bgClasses[Math.floor(Math.random() * bgClasses.length)];
+
+            const id = `note-${Date.now()}`;
+            createStickyOnBoard(id, name, msg, selectedStickerEmoji, Math.random() * 200, Math.random() * 150, randomBg);
+            saveStickersToStorage();
+
+            msgInput.value = "";
+            showToast("🌌 贴纸留言成功投射！");
+        });
+
+        // Initialize sticker emoji button selector highlights
+        document.querySelectorAll('.sticker-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.sticker-btn').forEach(b => b.classList.remove('bg-yellow-300', 'border-black'));
+                btn.classList.add('bg-yellow-300', 'border-black');
+                selectedStickerEmoji = btn.dataset.emoji;
+            });
+        });
+
+        /* ----------------------- STREAMING_CHUNK: Subconscious Mini Arcade Game Logic ----------------------- */
+        function startArcadeGame() {
+            initToneSound();
+            document.getElementById('arcade-start-screen').classList.add('hidden');
+            APP_STATE.gameScore = 0;
+            APP_STATE.sanity = 3;
+            APP_STATE.isGameRunning = true;
+            document.getElementById('arcade-score').innerText = APP_STATE.gameScore;
+            updateSanityHearts();
+
+            // Clear legacy entities
+            const container = document.getElementById('arcade-container');
+            container.querySelectorAll('.game-entity').forEach(e => e.remove());
+
+            if (APP_STATE.gameInterval) clearInterval(APP_STATE.gameInterval);
+            APP_STATE.gameInterval = setInterval(spawnGameEntity, 900);
+        }
+
+        function spawnGameEntity() {
+            if (!APP_STATE.isGameRunning) return;
+            const container = document.getElementById('arcade-container');
+            const entity = document.createElement('div');
+            
+            const isAbyss = Math.random() < 0.25; // 25% chance of black sanity trap
+            entity.className = `game-entity absolute text-2xl cursor-pointer select-none transition-transform duration-300 hover:scale-125 z-10`;
+            entity.style.left = `${Math.random() * 85 + 5}%`;
+            entity.style.top = `-30px`;
+
+            if (isAbyss) {
+                entity.innerText = "🐙"; // Abyssal logic trap
+                entity.dataset.type = "abyss";
+            } else {
+                const bubbles = ["👁️", "🛸", "🪁", "🦋", "🫧", "🌈"];
+                entity.innerText = bubbles[Math.floor(Math.random() * bubbles.length)];
+                entity.dataset.type = "sanity";
+            }
+
+            // Downward animation simulation
+            let posTop = -30;
+            const fallSpeed = 2.2 + Math.random() * 1.5;
+
+            const fallInterval = setInterval(() => {
+                if (!APP_STATE.isGameRunning) {
+                    clearInterval(fallInterval);
+                    entity.remove();
+                    return;
+                }
+                posTop += fallSpeed;
+                entity.style.top = `${posTop}px`;
+
+                // If fall below container boundary
+                if (posTop > container.clientHeight) {
+                    clearInterval(fallInterval);
+                    entity.remove();
+                    // Missed normal sanity bubble penalty
+                    if (entity.dataset.type === "sanity") {
+                        decreaseSanity();
+                    }
+                }
+            }, 30);
+
+            entity.addEventListener('click', () => {
+                initToneSound();
+                clearInterval(fallInterval);
+                entity.remove();
+
+                if (entity.dataset.type === "abyss") {
+                    // Clicked abyss penalty
+                    if (synth) synth.triggerAttackRelease("A2", "4n");
+                    decreaseSanity();
+                    showToast("👹 理智受到磨损！");
+                } else {
+                    // Clicked normal bubble reward
+                    if (synth) synth.triggerAttackRelease("C6", "16n");
+                    APP_STATE.gameScore += 10;
+                    document.getElementById('arcade-score').innerText = APP_STATE.gameScore;
+                    
+                    // High score record persistence
+                    if (APP_STATE.gameScore > APP_STATE.highScore) {
+                        APP_STATE.highScore = APP_STATE.gameScore;
+                        localStorage.setItem('dream_high_score', APP_STATE.highScore);
+                        document.getElementById('arcade-high-score').innerText = `HIGH: ${APP_STATE.highScore}`;
+                    }
+                }
+            });
+
+            container.appendChild(entity);
+        }
+
+        function decreaseSanity() {
+            APP_STATE.sanity--;
+            updateSanityHearts();
+            if (APP_STATE.sanity <= 0) {
+                gameOverArcade();
+            }
+        }
+
+        function updateSanityHearts() {
+            let hearts = "";
+            for (let i = 0; i < 3; i++) {
+                hearts += i < APP_STATE.sanity ? "💙" : "🖤";
+            }
+            document.getElementById('arcade-sanity').innerText = hearts;
+        }
+
+        function gameOverArcade() {
+            APP_STATE.isGameRunning = false;
+            clearInterval(APP_STATE.gameInterval);
+            if (synth) synth.triggerAttackRelease("C2", "2n");
+            
+            const startScreen = document.getElementById('arcade-start-screen');
+            startScreen.innerHTML = `
+                <div class="text-4xl">🌌</div>
+                <h3 class="text-xl font-bold text-white mb-1 font-['ZCOOL_KuaiLe']">✦ 观测站离线 / GAME OVER ✦</h3>
+                <p class="text-xs text-zinc-400 mb-3 font-mono">YOUR SCORE: ${APP_STATE.gameScore} | HIGHEST: ${APP_STATE.highScore}</p>
+                <button id="btn-start-arcade" onclick="startArcadeGame()" class="bg-yellow-300 text-black border-2 border-black px-4 py-2 text-sm font-bold shadow-[4px_4px_0px_0px_#000] hover:bg-yellow-200">
+                    RETRY GENERATION 🕹️
+                </button>
+            `;
+            startScreen.classList.remove('hidden');
+        }
+
+        document.getElementById('btn-start-arcade').addEventListener('click', startArcadeGame);
+
+        /* ----------------------- STREAMING_CHUNK: Setup background space Canvas eye tracker ----------------------- */
+        const bgCanvas = document.getElementById('bg-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        const particles = [];
+
+        function resizeBgCanvas() {
+            bgCanvas.width = window.innerWidth;
+            bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBgCanvas);
+        resizeBgCanvas();
+
+        class DreamParticle {
+            constructor() {
+                this.x = Math.random() * bgCanvas.width;
+                this.y = Math.random() * bgCanvas.height;
+                this.size = Math.random() * 12 + 6;
+                this.speedX = (Math.random() - 0.5) * 0.8;
+                this.speedY = (Math.random() - 0.5) * 0.8;
+                this.symbol = ["👁️", "🪐", "⭐", "🦋", "✨"][Math.floor(Math.random() * 5)];
+                this.opacity = Math.random() * 0.35 + 0.15;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0 || this.x > bgCanvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > bgCanvas.height) this.speedY *= -1;
+            }
+            draw() {
+                bgCtx.save();
+                bgCtx.globalAlpha = this.opacity;
+                bgCtx.font = `${this.size}px monospace`;
+                bgCtx.fillText(this.symbol, this.x, this.y);
+                bgCtx.restore();
+            }
+        }
+
+        for (let i = 0; i < 24; i++) {
+            particles.push(new DreamParticle());
+        }
+
+        function animateBgCanvas() {
+            bgCtx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateBgCanvas);
+        }
+        animateBgCanvas();
+
+        /* ----------------------- STREAMING_CHUNK: Interactive Avatar Eye mouse tracking ----------------------- */
+        document.addEventListener('mousemove', (e) => {
+            const pupil = document.getElementById('avatar-pupil');
+            if (!pupil) return;
+            const eyeBox = pupil.getBoundingClientRect();
+            const eyeCenterX = eyeBox.left + eyeBox.width / 2;
+            const eyeCenterY = eyeBox.top + eyeBox.height / 2;
+            
+            const angle = Math.atan2(e.clientY - eyeCenterY, e.clientX - eyeCenterX);
+            const dist = Math.min(6, Math.hypot(e.clientX - eyeCenterX, e.clientY - eyeCenterY) / 45);
+            
+            pupil.setAttribute('cx', 50 + Math.cos(angle) * dist);
+            pupil.setAttribute('cy', 50 + Math.sin(angle) * dist);
+        });
+
+        /* ----------------------- STREAMING_CHUNK: Binding Audio Elements and Controls ----------------------- */
+        document.getElementById('btn-enter-synth').addEventListener('click', () => {
+            document.getElementById('welcome-modal').classList.add('hidden');
+            initToneSound().then(() => {
+                triggerAmbientTrack(0);
+            });
+        });
+
+        document.getElementById('btn-enter-mute').addEventListener('click', () => {
+            document.getElementById('welcome-modal').classList.add('hidden');
+            document.getElementById('track-title').innerText = "🔇 静音浏览中 - 随时点击上方开启音轨";
+        });
+
+        document.getElementById('btn-play-synth').addEventListener('click', () => {
+            initToneSound().then(() => {
+                if (APP_STATE.ambientMusicOn) {
+                    if (loop) loop.stop();
+                    Tone.Transport.stop();
+                    APP_STATE.ambientMusicOn = false;
+                    document.getElementById('ambient-status').innerText = "SYNTH_MUTED";
+                    document.getElementById('btn-play-synth').innerText = "PLAY ▶";
+                } else {
+                    triggerAmbientTrack(APP_STATE.activeTrackIndex);
+                    document.getElementById('btn-play-synth').innerText = "PAUSE ⏸";
+                }
+            });
+        });
+
+        document.getElementById('btn-prev-track').addEventListener('click', () => {
+            initToneSound().then(() => {
+                APP_STATE.activeTrackIndex = (APP_STATE.activeTrackIndex - 1 + synthTracks.length) % synthTracks.length;
+                triggerAmbientTrack(APP_STATE.activeTrackIndex);
+                document.getElementById('btn-play-synth').innerText = "PAUSE ⏸";
+            });
+        });
+
+        document.getElementById('btn-next-track').addEventListener('click', () => {
+            initToneSound().then(() => {
+                APP_STATE.activeTrackIndex = (APP_STATE.activeTrackIndex + 1) % synthTracks.length;
+                triggerAmbientTrack(APP_STATE.activeTrackIndex);
+                document.getElementById('btn-play-synth').innerText = "PAUSE ⏸";
+            });
+        });
+
+        document.getElementById('btn-toggle-sound').addEventListener('click', () => {
+            initToneSound().then(() => {
+                if (Tone.Destination.mute) {
+                    Tone.Destination.mute = false;
+                    showToast("🔊 声音通道已开启！");
+                } else {
+                    Tone.Destination.mute = true;
+                    showToast("🔇 空间已进入静音模式");
+                }
+            });
+        });
+
+        /* Chatty dragon helper helper trigger instructions */
+        document.getElementById('btn-chat-next').addEventListener('click', () => {
+            chattyIndex = (chattyIndex + 1) % chattyLines.length;
+            document.getElementById('chatty-bubble').innerText = chattyLines[chattyIndex];
+            initToneSound();
+            if (synth) synth.triggerAttackRelease("A5", "16n");
+        });
+
+        /* ----------------------- STREAMING_CHUNK: Loading Cached Stickers on Initialization ----------------------- */
+        window.onload = function() {
+            loadStickersFromStorage();
+            document.getElementById('arcade-high-score').innerText = `HIGH: ${APP_STATE.highScore}`;
+            document.getElementById('visitor-count').innerText = 2000 + Math.floor(Math.random() * 50);
+        };
+    </script>
+</body>
+</html>
